@@ -18,6 +18,10 @@ Arquitectura Lakehouse desplegada con Docker Compose que implementa el patrón M
 | Silver | Iceberg | Merge (upsert) | Tablas históricas: `posts_hist`, `users_hist` + fecha_cargue |
 | Gold | Iceberg | Merge (upsert) | `post_counts_by_user` (métricas/KPIs) + fecha_cargue |
 
+## Diagrama de arquitectura
+
+![Arquitectura Lakehouse](arquitectura_lakehouse.svg)
+
 ## Servicios
 
 | Servicio | Puerto | URL |
@@ -65,7 +69,7 @@ docker compose exec airflow-worker python /opt/airflow/scripts/bronze_manual_loa
 ### Paso 2: Carga manual de Silver posts_hist
 Crear la tabla `posts_hist` en Silver (sin columna Body para optimizar memoria):
 ```
-docker compose exec airflow-worker bash -c "/home/airflow/.local/bin/spark-submit --master spark://spark-master:7077 --deploy-mode client --jars /opt/spark-jars/hadoop-aws-3.3.4.jar,/opt/spark-jars/aws-java-sdk-bundle-1.12.262.jar,/opt/spark-jars/bundle-2.24.8.jar,/opt/spark-jars/url-connection-client-2.24.8.jar,/opt/spark-jars/iceberg-spark-runtime-3.5_2.12-1.5.0.jar,/opt/spark-jars/nessie-spark-extensions-3.5_2.12-0.77.1.jar --conf spark.driver.host=airflow-worker --conf spark.driver.bindAddress=0.0.0.0 --conf spark.driver.memory=1g --conf spark.executor.instances=1 --conf spark.dynamicAllocation.enabled=false --conf spark.executor.cores=1 --conf spark.executor.memory=2g --conf spark.executor.memoryOverhead=512m --conf spark.sql.shuffle.partitions=2 --conf spark.sql.codegen.wholeStage=false --conf spark.sql.codegen.factoryMode=NO_CODEGEN --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions --conf spark.sql.defaultCatalog=nessie --conf spark.sql.catalog.nessie=org.apache.iceberg.spark.SparkCatalog --conf spark.sql.catalog.nessie.catalog-impl=org.apache.iceberg.nessie.NessieCatalog --conf spark.sql.catalog.nessie.uri=http://nessie:19120/api/v1 --conf spark.sql.catalog.nessie.ref=main --conf spark.sql.catalog.nessie.authentication.type=NONE --conf spark.sql.catalog.nessie.warehouse=s3a://warehouse/ --conf spark.sql.catalog.nessie.io-impl=org.apache.iceberg.aws.s3.S3FileIO --conf spark.sql.catalog.nessie.s3.endpoint=http://minio:9000 --conf spark.sql.catalog.nessie.s3.path-style-access=true --conf spark.sql.catalog.nessie.s3.region=us-east-1 --conf spark.sql.catalog.nessie.s3.access-key-id=admin --conf spark.sql.catalog.nessie.s3.secret-access-key=password --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000 --conf spark.hadoop.fs.s3a.access.key=admin --conf spark.hadoop.fs.s3a.secret.key=password --conf spark.hadoop.fs.s3a.path.style.access=true /opt/airflow/scripts/silver_manual_posts_light.py 2>&1 | tail -15"
+docker compose exec airflow-worker bash -c "/home/airflow/.local/bin/spark-submit --master spark://spark-master:7077 --deploy-mode client --jars /opt/spark-jars/hadoop-aws-3.3.4.jar,/opt/spark-jars/aws-java-sdk-bundle-1.12.262.jar,/opt/spark-jars/bundle-2.24.8.jar,/opt/spark-jars/url-connection-client-2.24.8.jar,/opt/spark-jars/iceberg-spark-runtime-3.5_2.12-1.5.0.jar,/opt/spark-jars/nessie-spark-extensions-3.5_2.12-0.77.1.jar --conf spark.driver.host=airflow-worker --conf spark.driver.bindAddress=0.0.0.0 --conf spark.driver.memory=1g --conf spark.executor.instances=1 --conf spark.dynamicAllocation.enabled=false --conf spark.executor.cores=1 --conf spark.executor.memory=2g --conf spark.executor.memoryOverhead=512m --conf spark.sql.shuffle.partitions=2 --conf spark.sql.codegen.wholeStage=false --conf spark.sql.codegen.factoryMode=NO_CODEGEN --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions --conf spark.sql.defaultCatalog=nessie --conf spark.sql.catalog.nessie=org.apache.iceberg.spark.SparkCatalog --conf spark.sql.catalog.nessie.catalog-impl=org.apache.iceberg.nessie.NessieCatalog --conf spark.sql.catalog.nessie.uri=http://nessie:19120/api/v1 --conf spark.sql.catalog.nessie.ref=main --conf spark.sql.catalog.nessie.authentication.type=NONE --conf spark.sql.catalog.nessie.warehouse=s3a://warehouse/ --conf spark.sql.catalog.nessie.io-impl=org.apache.iceberg.aws.s3.S3FileIO --conf spark.sql.catalog.nessie.s3.endpoint=http://minio:9000 --conf spark.sql.catalog.nessie.s3.path-style-access=true --conf spark.sql.catalog.nessie.s3.region=us-east-1 --conf spark.sql.catalog.nessie.s3.access-key-id=admin --conf spark.sql.catalog.nessie.s3.secret-access-key=password --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000 --conf spark.hadoop.fs.s3a.access.key=admin --conf spark.hadoop.fs.s3a.secret.key=password --conf spark.hadoop.fs.s3a.path.style.access=true /opt/airflow/scripts/silver_manual_posts_light.py"
 ```
 
 ### Paso 3: Ejecutar el DAG en Airflow
@@ -164,7 +168,7 @@ Proyecto2/
 │   ├── silver_manual_posts.py
 │   ├── silver_manual_posts_light.py
 │   └── gold_aggregation.py
-│    
+│   
 ├── notebooks/
 │   ├── bronze_ingest.ipynb
 │   ├── silver_transform.ipynb

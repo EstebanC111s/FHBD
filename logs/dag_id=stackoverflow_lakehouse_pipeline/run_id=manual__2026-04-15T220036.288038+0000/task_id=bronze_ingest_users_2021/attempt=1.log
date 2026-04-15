@@ -1,0 +1,40 @@
+[2026-04-15T22:00:38.410+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-04-15T22:00:38.436+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T22:00:36.288038+00:00 [queued]>
+[2026-04-15T22:00:38.451+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T22:00:36.288038+00:00 [queued]>
+[2026-04-15T22:00:38.453+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 3
+[2026-04-15T22:00:38.473+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): bronze_ingest_users_2021> on 2026-04-15 22:00:36.288038+00:00
+[2026-04-15T22:00:38.486+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=739) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-04-15T22:00:38.489+0000] {standard_task_runner.py:72} INFO - Started process 740 to run task
+[2026-04-15T22:00:38.488+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'stackoverflow_lakehouse_pipeline', 'bronze_ingest_users_2021', 'manual__2026-04-15T22:00:36.288038+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/stackoverflow_lakehouse_dag.py', '--cfg-path', '/tmp/tmpb4ttfqfe']
+[2026-04-15T22:00:38.490+0000] {standard_task_runner.py:105} INFO - Job 3: Subtask bronze_ingest_users_2021
+[2026-04-15T22:00:38.550+0000] {task_command.py:467} INFO - Running <TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T22:00:36.288038+00:00 [running]> on host ade60b55a35d
+[2026-04-15T22:00:38.646+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stackoverflow_lakehouse_pipeline' AIRFLOW_CTX_TASK_ID='bronze_ingest_users_2021' AIRFLOW_CTX_EXECUTION_DATE='2026-04-15T22:00:36.288038+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-15T22:00:36.288038+00:00'
+[2026-04-15T22:00:38.647+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-04-15T22:00:38.686+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2026-04-15T22:00:38.686+0000] {logging_mixin.py:190} INFO -   TAREA 1: BRONZE — Ingesta users_2021
+[2026-04-15T22:00:38.687+0000] {logging_mixin.py:190} INFO - ============================================================
+[2026-04-15T22:00:39.648+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2026-04-15T22:00:39.649+0000] {logging_mixin.py:190} INFO -   BRONZE INGEST — users_2021
+[2026-04-15T22:00:39.649+0000] {logging_mixin.py:190} INFO - ============================================================
+[2026-04-15T22:00:39.650+0000] {logging_mixin.py:190} INFO - 
+[1/2] Descargando y filtrando users año 2021 ...
+[2026-04-15T22:00:39.650+0000] {logging_mixin.py:190} INFO -   Descargando https://datasets-documentation.s3.eu-west-3.amazonaws.com/stackoverflow/parquet/users.parquet ...
+[2026-04-15T22:00:39.651+0000] {logging_mixin.py:190} INFO -   (Optimizado: columnas + retry + control de memoria)
+[2026-04-15T22:05:53.626+0000] {logging_mixin.py:190} INFO -   Descarga exitosa en intento 1
+[2026-04-15T22:05:53.628+0000] {logging_mixin.py:190} INFO -   Total filas descargadas: 22484235
+[2026-04-15T22:05:54.724+0000] {logging_mixin.py:190} INFO -   Filas para año 2021: 2782723
+[2026-04-15T22:05:54.726+0000] {logging_mixin.py:190} INFO -   Limitado a 50000 filas
+[2026-04-15T22:05:54.820+0000] {logging_mixin.py:190} INFO - 
+[2/2] Subiendo a MinIO bronze/users/2021/users_2021.parquet ...
+[2026-04-15T22:05:55.371+0000] {logging_mixin.py:190} INFO -   Subido s3://bronze/users/2021/users_2021.parquet (50000 filas)
+[2026-04-15T22:05:55.372+0000] {logging_mixin.py:190} INFO - 
+  Bronze ingest users_2021 completado.
+[2026-04-15T22:05:55.385+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-04-15T22:05:55.396+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-04-15T22:05:55.397+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=stackoverflow_lakehouse_pipeline, task_id=bronze_ingest_users_2021, run_id=manual__2026-04-15T22:00:36.288038+00:00, execution_date=20260415T220036, start_date=20260415T220038, end_date=20260415T220555
+[2026-04-15T22:05:55.513+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-04-15T22:05:55.523+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

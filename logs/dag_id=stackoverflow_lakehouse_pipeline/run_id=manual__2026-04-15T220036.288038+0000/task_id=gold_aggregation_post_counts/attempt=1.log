@@ -1,0 +1,462 @@
+[2026-04-15T22:06:29.857+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-04-15T22:06:29.878+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.gold_aggregation_post_counts manual__2026-04-15T22:00:36.288038+00:00 [queued]>
+[2026-04-15T22:06:29.892+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.gold_aggregation_post_counts manual__2026-04-15T22:00:36.288038+00:00 [queued]>
+[2026-04-15T22:06:29.893+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 3
+[2026-04-15T22:06:29.910+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): gold_aggregation_post_counts> on 2026-04-15 22:00:36.288038+00:00
+[2026-04-15T22:06:29.921+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1089) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-04-15T22:06:29.922+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'stackoverflow_lakehouse_pipeline', 'gold_aggregation_post_counts', 'manual__2026-04-15T22:00:36.288038+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/stackoverflow_lakehouse_dag.py', '--cfg-path', '/tmp/tmpy_s34r49']
+[2026-04-15T22:06:29.923+0000] {standard_task_runner.py:72} INFO - Started process 1090 to run task
+[2026-04-15T22:06:29.924+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask gold_aggregation_post_counts
+[2026-04-15T22:06:29.974+0000] {task_command.py:467} INFO - Running <TaskInstance: stackoverflow_lakehouse_pipeline.gold_aggregation_post_counts manual__2026-04-15T22:00:36.288038+00:00 [running]> on host ade60b55a35d
+[2026-04-15T22:06:30.114+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stackoverflow_lakehouse_pipeline' AIRFLOW_CTX_TASK_ID='gold_aggregation_post_counts' AIRFLOW_CTX_EXECUTION_DATE='2026-04-15T22:00:36.288038+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-15T22:00:36.288038+00:00'
+[2026-04-15T22:06:30.115+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-04-15T22:06:30.138+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2026-04-15T22:06:30.138+0000] {logging_mixin.py:190} INFO -   TAREA 3: GOLD — post_counts_by_user (spark-submit client mode)
+[2026-04-15T22:06:30.139+0000] {logging_mixin.py:190} INFO - ============================================================
+[2026-04-15T22:06:30.139+0000] {logging_mixin.py:190} INFO - Ejecutando: spark-submit --master spark://spark-master:7077 ... gold_aggregation.py
+[2026-04-15T22:06:57.668+0000] {logging_mixin.py:190} INFO - Spark: 3.5.5 | Master: spark://spark-master:7077
+
+============================================================
+  GOLD — post_counts_by_user
+============================================================
+
+[1/5] Validando tablas Silver...
+   Tablas encontradas.
+
+[2/5] Leyendo Silver...
+
+[3/5] Calculando métricas por usuario...
+
+[4/5] Cruzando con users_hist...
+
+[5/5] Escribiendo Gold...
+   Tabla no existe → creando nessie.gold.post_counts_by_user ...
+   Tabla creada.
+
+   Gold: 66723 filas
++-----------+-----------+---------------+----------------+-----------+--------------+-----------+--------------+----------------------+-----------+----------+--------+-----+-------+---------+------------+
+|OwnerUserId|total_posts|total_preguntas|total_respuestas|total_score|score_promedio|total_views|total_comments|total_answers_received|DisplayName|Reputation|Location|Views|UpVotes|DownVotes|fecha_cargue|
++-----------+-----------+---------------+----------------+-----------+--------------+-----------+--------------+----------------------+-----------+----------+--------+-----+-------+---------+------------+
+|12487679   |1          |1              |0               |0          |0.0           |338        |1             |2                     |NULL       |NULL      |NULL    |NULL |NULL   |NULL     |2026-04-15  |
+|12504598   |1          |1              |0               |2          |2.0           |372        |1             |1                     |NULL       |NULL      |NULL    |NULL |NULL   |NULL     |2026-04-15  |
+|10830320   |1          |1              |0               |2          |2.0           |920        |1             |3                     |NULL       |NULL      |NULL    |NULL |NULL   |NULL     |2026-04-15  |
+|13894555   |1          |1              |0               |1          |1.0           |104        |1             |1                     |NULL       |NULL      |NULL    |NULL |NULL   |NULL     |2026-04-15  |
+|6040831    |1          |1              |0               |1          |1.0           |37         |1             |0                     |NULL       |NULL      |NULL    |NULL |NULL   |NULL     |2026-04-15  |
++-----------+-----------+---------------+----------------+-----------+--------------+-----------+--------------+----------------------+-----------+----------+--------+-----+-------+---------+------------+
+only showing top 5 rows
+
+
+  Gold completado.
+[2026-04-15T22:06:57.669+0000] {logging_mixin.py:190} INFO - STDERR: /home/***/.local/lib/python3.12/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+26/04/15 22:06:32 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/04/15 22:06:34 INFO SparkContext: Running Spark version 3.5.5
+26/04/15 22:06:34 INFO SparkContext: OS info Linux, 5.15.167.4-microsoft-standard-WSL2, amd64
+26/04/15 22:06:34 INFO SparkContext: Java version 17.0.18
+26/04/15 22:06:34 INFO ResourceUtils: ==============================================================
+26/04/15 22:06:34 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/04/15 22:06:34 INFO ResourceUtils: ==============================================================
+26/04/15 22:06:34 INFO SparkContext: Submitted application: gold_aggregation
+26/04/15 22:06:34 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memoryOverhead -> name: memoryOverhead, amount: 512, script: , vendor: , cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 2048, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/04/15 22:06:34 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+26/04/15 22:06:34 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/04/15 22:06:34 INFO SecurityManager: Changing view acls to: ***
+26/04/15 22:06:34 INFO SecurityManager: Changing modify acls to: ***
+26/04/15 22:06:34 INFO SecurityManager: Changing view acls groups to: 
+26/04/15 22:06:34 INFO SecurityManager: Changing modify acls groups to: 
+26/04/15 22:06:34 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: ***; groups with view permissions: EMPTY; users with modify permissions: ***; groups with modify permissions: EMPTY
+26/04/15 22:06:34 INFO Utils: Successfully started service 'sparkDriver' on port 37135.
+26/04/15 22:06:34 INFO SparkEnv: Registering MapOutputTracker
+26/04/15 22:06:34 INFO SparkEnv: Registering BlockManagerMaster
+26/04/15 22:06:34 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/04/15 22:06:34 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/04/15 22:06:34 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/04/15 22:06:34 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-33f79d72-d062-47eb-933b-81c1462aaacd
+26/04/15 22:06:34 INFO MemoryStore: MemoryStore started with capacity 1048.8 MiB
+26/04/15 22:06:34 INFO SparkEnv: Registering OutputCommitCoordinator
+26/04/15 22:06:34 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/04/15 22:06:34 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/04/15 22:06:34 INFO SparkContext: Added JAR file:///opt/spark-jars/hadoop-aws-3.3.4.jar at spark://***-worker:37135/jars/hadoop-aws-3.3.4.jar with timestamp 1776290794217
+26/04/15 22:06:34 INFO SparkContext: Added JAR file:///opt/spark-jars/aws-java-sdk-bundle-1.12.262.jar at spark://***-worker:37135/jars/aws-java-sdk-bundle-1.12.262.jar with timestamp 1776290794217
+26/04/15 22:06:34 INFO SparkContext: Added JAR file:///opt/spark-jars/bundle-2.24.8.jar at spark://***-worker:37135/jars/bundle-2.24.8.jar with timestamp 1776290794217
+26/04/15 22:06:34 INFO SparkContext: Added JAR file:///opt/spark-jars/url-connection-client-2.24.8.jar at spark://***-worker:37135/jars/url-connection-client-2.24.8.jar with timestamp 1776290794217
+26/04/15 22:06:34 INFO SparkContext: Added JAR file:///opt/spark-jars/iceberg-spark-runtime-3.5_2.12-1.5.0.jar at spark://***-worker:37135/jars/iceberg-spark-runtime-3.5_2.12-1.5.0.jar with timestamp 1776290794217
+26/04/15 22:06:34 INFO SparkContext: Added JAR file:///opt/spark-jars/nessie-spark-extensions-3.5_2.12-0.77.1.jar at spark://***-worker:37135/jars/nessie-spark-extensions-3.5_2.12-0.77.1.jar with timestamp 1776290794217
+26/04/15 22:06:35 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+26/04/15 22:06:35 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.4:7077 after 25 ms (0 ms spent in bootstraps)
+26/04/15 22:06:35 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20260415220635-0002
+26/04/15 22:06:35 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260415220635-0002/0 on worker-20260415213140-172.18.0.9-41577 (172.18.0.9:41577) with 1 core(s)
+26/04/15 22:06:35 INFO StandaloneSchedulerBackend: Granted executor ID app-20260415220635-0002/0 on hostPort 172.18.0.9:41577 with 1 core(s), 2.0 GiB RAM
+26/04/15 22:06:35 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39299.
+26/04/15 22:06:35 INFO NettyBlockTransferService: Server created on ***-worker 0.0.0.0:39299
+26/04/15 22:06:35 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/04/15 22:06:35 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, ***-worker, 39299, None)
+26/04/15 22:06:35 INFO BlockManagerMasterEndpoint: Registering block manager ***-worker:39299 with 1048.8 MiB RAM, BlockManagerId(driver, ***-worker, 39299, None)
+26/04/15 22:06:35 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, ***-worker, 39299, None)
+26/04/15 22:06:35 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, ***-worker, 39299, None)
+26/04/15 22:06:35 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20260415220635-0002/0 is now RUNNING
+26/04/15 22:06:35 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+26/04/15 22:06:35 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+26/04/15 22:06:35 INFO SharedState: Warehouse path is 'file:/opt/***/spark-warehouse'.
+26/04/15 22:06:37 INFO CatalogUtil: Loading custom FileIO implementation: org.apache.iceberg.aws.s3.S3FileIO
+26/04/15 22:06:38 INFO BaseMetastoreTableOperations: Refreshing table metadata from new version: s3a://warehouse/silver/posts_hist_5ada6514-0f38-49eb-9f1c-d8d6884565ba/metadata/00000-20f62a41-206c-4939-980c-365f44c988c9.metadata.json
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+26/04/15 22:06:39 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.9:41016) with ID 0,  ResourceProfileId 0
+26/04/15 22:06:39 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.9:37483 with 1048.8 MiB RAM, BlockManagerId(0, 172.18.0.9, 37483, None)
+26/04/15 22:06:39 INFO NessieUtil: loadTableMetadata for 'silver.posts_hist' from location 's3a://warehouse/silver/posts_hist_5ada6514-0f38-49eb-9f1c-d8d6884565ba/metadata/00000-20f62a41-206c-4939-980c-365f44c988c9.metadata.json' at 'Branch{name=main, metadata=null, hash=48ee5cf48d97c9b3ad54f7f90dc710401f3170866007c49d82b6bf02ace704e8}'
+26/04/15 22:06:39 INFO BaseMetastoreCatalog: Table loaded by catalog: nessie.silver.posts_hist
+26/04/15 22:06:41 INFO V2ScanRelationPushDown: 
+Output: Id#0L, PostTypeId#1L, AcceptedAnswerId#2L, CreationDate#3, Score#4L, ViewCount#5L, OwnerUserId#6L, LastActivityDate#7, Title#8, Tags#9, AnswerCount#10L, CommentCount#11L, FavoriteCount#12L, ContentLicense#13, ParentId#14, fecha_cargue#15
+         
+26/04/15 22:06:41 INFO SnapshotScan: Scanning table nessie.silver.posts_hist snapshot 458192786282696665 created at 2026-04-15T21:59:31.253+00:00 with filter true
+26/04/15 22:06:41 INFO BaseDistributedDataScan: Planning file tasks locally for table nessie.silver.posts_hist
+26/04/15 22:06:41 INFO SparkPartitioningAwareScan: Reporting UnknownPartitioning with 1 partition(s) for table nessie.silver.posts_hist
+26/04/15 22:06:41 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 32.0 KiB, free 1048.8 MiB)
+26/04/15 22:06:41 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 3.8 KiB, free 1048.8 MiB)
+26/04/15 22:06:41 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on ***-worker:39299 (size: 3.8 KiB, free: 1048.8 MiB)
+26/04/15 22:06:41 INFO SparkContext: Created broadcast 0 from collect at /opt/***/scripts/gold_aggregation.py:63
+26/04/15 22:06:42 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 32.0 KiB, free 1048.7 MiB)
+26/04/15 22:06:42 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 3.8 KiB, free 1048.7 MiB)
+26/04/15 22:06:42 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on ***-worker:39299 (size: 3.8 KiB, free: 1048.8 MiB)
+26/04/15 22:06:42 INFO SparkContext: Created broadcast 1 from collect at /opt/***/scripts/gold_aggregation.py:63
+26/04/15 22:06:42 INFO SparkContext: Starting job: collect at /opt/***/scripts/gold_aggregation.py:63
+26/04/15 22:06:42 INFO DAGScheduler: Got job 0 (collect at /opt/***/scripts/gold_aggregation.py:63) with 1 output partitions
+26/04/15 22:06:42 INFO DAGScheduler: Final stage: ResultStage 0 (collect at /opt/***/scripts/gold_aggregation.py:63)
+26/04/15 22:06:42 INFO DAGScheduler: Parents of final stage: List()
+26/04/15 22:06:42 INFO DAGScheduler: Missing parents: List()
+26/04/15 22:06:42 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[3] at collect at /opt/***/scripts/gold_aggregation.py:63), which has no missing parents
+26/04/15 22:06:42 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 12.0 KiB, free 1048.7 MiB)
+26/04/15 22:06:42 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 5.3 KiB, free 1048.7 MiB)
+26/04/15 22:06:42 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on ***-worker:39299 (size: 5.3 KiB, free: 1048.8 MiB)
+26/04/15 22:06:42 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1585
+26/04/15 22:06:42 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[3] at collect at /opt/***/scripts/gold_aggregation.py:63) (first 15 tasks are for partitions Vector(0))
+26/04/15 22:06:42 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+26/04/15 22:06:44 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 15819 bytes) 
+26/04/15 22:06:45 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.18.0.9:37483 (size: 5.3 KiB, free: 1048.8 MiB)
+26/04/15 22:06:46 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.18.0.9:37483 (size: 3.8 KiB, free: 1048.8 MiB)
+26/04/15 22:06:48 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 3729 ms on 172.18.0.9 (executor 0) (1/1)
+26/04/15 22:06:48 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+26/04/15 22:06:48 INFO DAGScheduler: ResultStage 0 (collect at /opt/***/scripts/gold_aggregation.py:63) finished in 5.938 s
+26/04/15 22:06:48 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+26/04/15 22:06:48 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+26/04/15 22:06:48 INFO DAGScheduler: Job 0 finished: collect at /opt/***/scripts/gold_aggregation.py:63, took 5.993605 s
+26/04/15 22:06:48 INFO BaseMetastoreTableOperations: Refreshing table metadata from new version: s3a://warehouse/silver/users_hist_5f09da61-9dce-4190-a974-897b2c2c178b/metadata/00000-ad6097d7-5a98-4048-b440-abf08dfbad98.metadata.json
+26/04/15 22:06:48 INFO NessieUtil: loadTableMetadata for 'silver.users_hist' from location 's3a://warehouse/silver/users_hist_5f09da61-9dce-4190-a974-897b2c2c178b/metadata/00000-ad6097d7-5a98-4048-b440-abf08dfbad98.metadata.json' at 'Branch{name=main, metadata=null, hash=48ee5cf48d97c9b3ad54f7f90dc710401f3170866007c49d82b6bf02ace704e8}'
+26/04/15 22:06:48 INFO BaseMetastoreCatalog: Table loaded by catalog: nessie.silver.users_hist
+26/04/15 22:06:48 INFO V2ScanRelationPushDown: 
+Output: Id#48L, Reputation#49, CreationDate#50, DisplayName#51, LastAccessDate#52, AboutMe#53, Views#54L, UpVotes#55L, DownVotes#56L, WebsiteUrl#57, Location#58, AccountId#59L, __index_level_0__#60L, fecha_cargue#61
+         
+26/04/15 22:06:48 INFO SnapshotScan: Scanning table nessie.silver.users_hist snapshot 3936410590612453453 created at 2026-04-15T22:06:25.588+00:00 with filter true
+26/04/15 22:06:48 INFO BaseDistributedDataScan: Planning file tasks locally for table nessie.silver.users_hist
+26/04/15 22:06:48 INFO SparkPartitioningAwareScan: Reporting UnknownPartitioning with 1 partition(s) for table nessie.silver.users_hist
+26/04/15 22:06:48 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 32.0 KiB, free 1048.7 MiB)
+26/04/15 22:06:48 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 3.7 KiB, free 1048.7 MiB)
+26/04/15 22:06:48 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on ***-worker:39299 (size: 3.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:48 INFO SparkContext: Created broadcast 3 from collect at /opt/***/scripts/gold_aggregation.py:63
+26/04/15 22:06:48 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 32.0 KiB, free 1048.6 MiB)
+26/04/15 22:06:48 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 3.7 KiB, free 1048.6 MiB)
+26/04/15 22:06:48 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on ***-worker:39299 (size: 3.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:48 INFO SparkContext: Created broadcast 4 from collect at /opt/***/scripts/gold_aggregation.py:63
+26/04/15 22:06:48 INFO SparkContext: Starting job: collect at /opt/***/scripts/gold_aggregation.py:63
+26/04/15 22:06:48 INFO DAGScheduler: Got job 1 (collect at /opt/***/scripts/gold_aggregation.py:63) with 1 output partitions
+26/04/15 22:06:48 INFO DAGScheduler: Final stage: ResultStage 1 (collect at /opt/***/scripts/gold_aggregation.py:63)
+26/04/15 22:06:48 INFO DAGScheduler: Parents of final stage: List()
+26/04/15 22:06:48 INFO DAGScheduler: Missing parents: List()
+26/04/15 22:06:48 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[7] at collect at /opt/***/scripts/gold_aggregation.py:63), which has no missing parents
+26/04/15 22:06:48 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 11.8 KiB, free 1048.6 MiB)
+26/04/15 22:06:48 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 5.2 KiB, free 1048.6 MiB)
+26/04/15 22:06:48 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on ***-worker:39299 (size: 5.2 KiB, free: 1048.8 MiB)
+26/04/15 22:06:48 INFO SparkContext: Created broadcast 5 from broadcast at DAGScheduler.scala:1585
+26/04/15 22:06:48 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[7] at collect at /opt/***/scripts/gold_aggregation.py:63) (first 15 tasks are for partitions Vector(0))
+26/04/15 22:06:48 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
+26/04/15 22:06:48 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 15570 bytes) 
+26/04/15 22:06:48 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.18.0.9:37483 (size: 5.2 KiB, free: 1048.8 MiB)
+26/04/15 22:06:48 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 172.18.0.9:37483 (size: 3.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:48 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 178 ms on 172.18.0.9 (executor 0) (1/1)
+26/04/15 22:06:48 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+26/04/15 22:06:48 INFO DAGScheduler: ResultStage 1 (collect at /opt/***/scripts/gold_aggregation.py:63) finished in 0.188 s
+26/04/15 22:06:48 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+26/04/15 22:06:48 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+26/04/15 22:06:48 INFO DAGScheduler: Job 1 finished: collect at /opt/***/scripts/gold_aggregation.py:63, took 0.193395 s
+26/04/15 22:06:49 INFO BaseMetastoreCatalog: Table properties set at catalog level through catalog properties: {gc.enabled=false, write.metadata.delete-after-commit.enabled=false}
+26/04/15 22:06:49 INFO BaseMetastoreCatalog: Table properties enforced at catalog level through catalog properties: {}
+26/04/15 22:06:49 INFO V2ScanRelationPushDown: 
+Pushing operators to nessie.silver.posts_hist
+Pushed Filters: OwnerUserId IS NOT NULL
+Post-Scan Filters: isnotnull(OwnerUserId#96L)
+         
+26/04/15 22:06:49 INFO V2ScanRelationPushDown: 
+Pushing operators to nessie.silver.users_hist
+Pushed Filters: Id IS NOT NULL
+Post-Scan Filters: isnotnull(Id#122L)
+         
+26/04/15 22:06:49 INFO V2ScanRelationPushDown: 
+Output: Id#90L, PostTypeId#91L, Score#94L, ViewCount#95L, OwnerUserId#96L, AnswerCount#100L, CommentCount#101L
+         
+26/04/15 22:06:49 INFO V2ScanRelationPushDown: 
+Output: Id#122L, Reputation#123, DisplayName#125, Views#128L, UpVotes#129L, DownVotes#130L, Location#132
+         
+26/04/15 22:06:49 INFO SnapshotScan: Scanning table nessie.silver.posts_hist snapshot 458192786282696665 created at 2026-04-15T21:59:31.253+00:00 with filter OwnerUserId IS NOT NULL
+26/04/15 22:06:49 INFO BaseDistributedDataScan: Planning file tasks locally for table nessie.silver.posts_hist
+26/04/15 22:06:50 INFO SparkPartitioningAwareScan: Reporting UnknownPartitioning with 1 partition(s) for table nessie.silver.posts_hist
+26/04/15 22:06:50 INFO SnapshotScan: Scanning table nessie.silver.users_hist snapshot 3936410590612453453 created at 2026-04-15T22:06:25.588+00:00 with filter Id IS NOT NULL
+26/04/15 22:06:50 INFO BaseDistributedDataScan: Planning file tasks locally for table nessie.silver.users_hist
+26/04/15 22:06:50 INFO SparkPartitioningAwareScan: Reporting UnknownPartitioning with 1 partition(s) for table nessie.silver.users_hist
+26/04/15 22:06:50 INFO SparkWrite: Requesting 0 bytes advisory partition size for table gold.post_counts_by_user
+26/04/15 22:06:50 INFO SparkWrite: Requesting UnspecifiedDistribution as write distribution for table gold.post_counts_by_user
+26/04/15 22:06:50 INFO SparkWrite: Requesting [] as write ordering for table gold.post_counts_by_user
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 32.0 KiB, free 1048.6 MiB)
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 3.8 KiB, free 1048.6 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on ***-worker:39299 (size: 3.8 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO SparkContext: Created broadcast 6 from broadcast at SparkBatch.java:79
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 32.0 KiB, free 1048.6 MiB)
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 3.7 KiB, free 1048.6 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on ***-worker:39299 (size: 3.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO SparkContext: Created broadcast 7 from broadcast at SparkBatch.java:79
+26/04/15 22:06:50 INFO BlockManagerInfo: Removed broadcast_2_piece0 on ***-worker:39299 in memory (size: 5.3 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 172.18.0.9:37483 in memory (size: 5.3 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_8 stored as values in memory (estimated size 32.0 KiB, free 1048.5 MiB)
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 3.8 KiB, free 1048.6 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Removed broadcast_3_piece0 on ***-worker:39299 in memory (size: 3.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on ***-worker:39299 (size: 3.8 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO SparkContext: Created broadcast 8 from broadcast at SparkBatch.java:79
+26/04/15 22:06:50 INFO BlockManagerInfo: Removed broadcast_4_piece0 on ***-worker:39299 in memory (size: 3.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_9 stored as values in memory (estimated size 32.0 KiB, free 1048.6 MiB)
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_9_piece0 stored as bytes in memory (estimated size 3.7 KiB, free 1048.6 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Removed broadcast_4_piece0 on 172.18.0.9:37483 in memory (size: 3.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on ***-worker:39299 (size: 3.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO SparkContext: Created broadcast 9 from broadcast at SparkBatch.java:79
+26/04/15 22:06:50 INFO BlockManagerInfo: Removed broadcast_5_piece0 on ***-worker:39299 in memory (size: 5.2 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Removed broadcast_5_piece0 on 172.18.0.9:37483 in memory (size: 5.2 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO DAGScheduler: Registering RDD 13 (create at NativeMethodAccessorImpl.java:0) as input to shuffle 0
+26/04/15 22:06:50 INFO DAGScheduler: Got map stage job 2 (create at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/04/15 22:06:50 INFO DAGScheduler: Final stage: ShuffleMapStage 2 (create at NativeMethodAccessorImpl.java:0)
+26/04/15 22:06:50 INFO DAGScheduler: Parents of final stage: List()
+26/04/15 22:06:50 INFO DAGScheduler: Missing parents: List()
+26/04/15 22:06:50 INFO DAGScheduler: Submitting ShuffleMapStage 2 (MapPartitionsRDD[13] at create at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_10 stored as values in memory (estimated size 32.1 KiB, free 1048.6 MiB)
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_10_piece0 stored as bytes in memory (estimated size 13.7 KiB, free 1048.5 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Added broadcast_10_piece0 in memory on ***-worker:39299 (size: 13.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO SparkContext: Created broadcast 10 from broadcast at DAGScheduler.scala:1585
+26/04/15 22:06:50 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 2 (MapPartitionsRDD[13] at create at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/04/15 22:06:50 INFO TaskSchedulerImpl: Adding task set 2.0 with 1 tasks resource profile 0
+26/04/15 22:06:50 INFO DAGScheduler: Registering RDD 19 (create at NativeMethodAccessorImpl.java:0) as input to shuffle 1
+26/04/15 22:06:50 INFO DAGScheduler: Got map stage job 3 (create at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/04/15 22:06:50 INFO DAGScheduler: Final stage: ShuffleMapStage 3 (create at NativeMethodAccessorImpl.java:0)
+26/04/15 22:06:50 INFO DAGScheduler: Parents of final stage: List()
+26/04/15 22:06:50 INFO DAGScheduler: Missing parents: List()
+26/04/15 22:06:50 INFO DAGScheduler: Submitting ShuffleMapStage 3 (MapPartitionsRDD[19] at create at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/04/15 22:06:50 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 2) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 15507 bytes) 
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_11 stored as values in memory (estimated size 24.9 KiB, free 1048.5 MiB)
+26/04/15 22:06:50 INFO MemoryStore: Block broadcast_11_piece0 stored as bytes in memory (estimated size 11.0 KiB, free 1048.5 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Added broadcast_11_piece0 in memory on ***-worker:39299 (size: 11.0 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO SparkContext: Created broadcast 11 from broadcast at DAGScheduler.scala:1585
+26/04/15 22:06:50 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 3 (MapPartitionsRDD[19] at create at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/04/15 22:06:50 INFO TaskSchedulerImpl: Adding task set 3.0 with 1 tasks resource profile 0
+26/04/15 22:06:50 INFO BlockManagerInfo: Added broadcast_10_piece0 in memory on 172.18.0.9:37483 (size: 13.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:50 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on 172.18.0.9:37483 (size: 3.8 KiB, free: 1048.8 MiB)
+26/04/15 22:06:52 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 3) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 15368 bytes) 
+26/04/15 22:06:52 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 2) in 2242 ms on 172.18.0.9 (executor 0) (1/1)
+26/04/15 22:06:52 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+26/04/15 22:06:52 INFO DAGScheduler: ShuffleMapStage 2 (create at NativeMethodAccessorImpl.java:0) finished in 2.268 s
+26/04/15 22:06:52 INFO DAGScheduler: looking for newly runnable stages
+26/04/15 22:06:52 INFO DAGScheduler: running: Set(ShuffleMapStage 3)
+26/04/15 22:06:52 INFO DAGScheduler: waiting: Set()
+26/04/15 22:06:52 INFO DAGScheduler: failed: Set()
+26/04/15 22:06:52 INFO BlockManagerInfo: Added broadcast_11_piece0 in memory on 172.18.0.9:37483 (size: 11.0 KiB, free: 1048.8 MiB)
+26/04/15 22:06:52 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on 172.18.0.9:37483 (size: 3.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:53 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 3) in 523 ms on 172.18.0.9 (executor 0) (1/1)
+26/04/15 22:06:53 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+26/04/15 22:06:53 INFO DAGScheduler: ShuffleMapStage 3 (create at NativeMethodAccessorImpl.java:0) finished in 2.758 s
+26/04/15 22:06:53 INFO DAGScheduler: looking for newly runnable stages
+26/04/15 22:06:53 INFO DAGScheduler: running: Set()
+26/04/15 22:06:53 INFO DAGScheduler: waiting: Set()
+26/04/15 22:06:53 INFO DAGScheduler: failed: Set()
+26/04/15 22:06:53 INFO ShufflePartitionsUtil: For shuffle(1), advisory target size: 67108864, actual target size 1104923, minimum partition size: 1048576
+26/04/15 22:06:53 INFO SparkContext: Starting job: $anonfun$withThreadLocalCaptured$1 at FutureTask.java:264
+26/04/15 22:06:53 INFO DAGScheduler: Got job 4 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:264) with 2 output partitions
+26/04/15 22:06:53 INFO DAGScheduler: Final stage: ResultStage 5 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:264)
+26/04/15 22:06:53 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 4)
+26/04/15 22:06:53 INFO DAGScheduler: Missing parents: List()
+26/04/15 22:06:53 INFO DAGScheduler: Submitting ResultStage 5 (MapPartitionsRDD[21] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:264), which has no missing parents
+26/04/15 22:06:53 INFO MemoryStore: Block broadcast_12 stored as values in memory (estimated size 8.3 KiB, free 1048.5 MiB)
+26/04/15 22:06:53 INFO MemoryStore: Block broadcast_12_piece0 stored as bytes in memory (estimated size 4.2 KiB, free 1048.5 MiB)
+26/04/15 22:06:53 INFO BlockManagerInfo: Added broadcast_12_piece0 in memory on ***-worker:39299 (size: 4.2 KiB, free: 1048.7 MiB)
+26/04/15 22:06:53 INFO SparkContext: Created broadcast 12 from broadcast at DAGScheduler.scala:1585
+26/04/15 22:06:53 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 5 (MapPartitionsRDD[21] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:264) (first 15 tasks are for partitions Vector(0, 1))
+26/04/15 22:06:53 INFO TaskSchedulerImpl: Adding task set 5.0 with 2 tasks resource profile 0
+26/04/15 22:06:53 INFO TaskSetManager: Starting task 0.0 in stage 5.0 (TID 4) (172.18.0.9, executor 0, partition 0, NODE_LOCAL, 9621 bytes) 
+26/04/15 22:06:53 INFO BlockManagerInfo: Added broadcast_12_piece0 in memory on 172.18.0.9:37483 (size: 4.2 KiB, free: 1048.8 MiB)
+26/04/15 22:06:53 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 1 to 172.18.0.9:41016
+26/04/15 22:06:53 INFO BlockManagerInfo: Added taskresult_4 in memory on 172.18.0.9:37483 (size: 1043.2 KiB, free: 1047.7 MiB)
+26/04/15 22:06:53 INFO TaskSetManager: Starting task 1.0 in stage 5.0 (TID 5) (172.18.0.9, executor 0, partition 1, NODE_LOCAL, 9621 bytes) 
+26/04/15 22:06:53 INFO TransportClientFactory: Successfully created connection to /172.18.0.9:37483 after 2 ms (0 ms spent in bootstraps)
+26/04/15 22:06:53 INFO TaskSetManager: Finished task 0.0 in stage 5.0 (TID 4) in 267 ms on 172.18.0.9 (executor 0) (1/2)
+26/04/15 22:06:53 INFO BlockManagerInfo: Added taskresult_5 in memory on 172.18.0.9:37483 (size: 1034.2 KiB, free: 1046.7 MiB)
+26/04/15 22:06:53 INFO BlockManagerInfo: Removed taskresult_4 on 172.18.0.9:37483 in memory (size: 1043.2 KiB, free: 1047.8 MiB)
+26/04/15 22:06:53 INFO BlockManagerInfo: Removed broadcast_10_piece0 on ***-worker:39299 in memory (size: 13.7 KiB, free: 1048.8 MiB)
+26/04/15 22:06:53 INFO TaskSetManager: Finished task 1.0 in stage 5.0 (TID 5) in 118 ms on 172.18.0.9 (executor 0) (2/2)
+26/04/15 22:06:53 INFO TaskSchedulerImpl: Removed TaskSet 5.0, whose tasks have all completed, from pool 
+26/04/15 22:06:53 INFO DAGScheduler: ResultStage 5 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:264) finished in 0.318 s
+26/04/15 22:06:53 INFO DAGScheduler: Job 4 is finished. Cancelling potential speculative or zombie tasks for this job
+26/04/15 22:06:53 INFO TaskSchedulerImpl: Killing all running tasks in stage 5: Stage finished
+26/04/15 22:06:53 INFO DAGScheduler: Job 4 finished: $anonfun$withThreadLocalCaptured$1 at FutureTask.java:264, took 0.326113 s
+26/04/15 22:06:53 INFO BlockManagerInfo: Removed broadcast_10_piece0 on 172.18.0.9:37483 in memory (size: 13.7 KiB, free: 1047.8 MiB)
+26/04/15 22:06:53 INFO BlockManagerInfo: Removed taskresult_5 on 172.18.0.9:37483 in memory (size: 1034.2 KiB, free: 1048.8 MiB)
+26/04/15 22:06:53 INFO BlockManagerInfo: Removed broadcast_11_piece0 on ***-worker:39299 in memory (size: 11.0 KiB, free: 1048.8 MiB)
+26/04/15 22:06:53 INFO BlockManagerInfo: Removed broadcast_11_piece0 on 172.18.0.9:37483 in memory (size: 11.0 KiB, free: 1048.8 MiB)
+26/04/15 22:06:53 INFO BlockManagerInfo: Removed broadcast_12_piece0 on ***-worker:39299 in memory (size: 4.2 KiB, free: 1048.8 MiB)
+26/04/15 22:06:53 INFO BlockManagerInfo: Removed broadcast_12_piece0 on 172.18.0.9:37483 in memory (size: 4.2 KiB, free: 1048.8 MiB)
+26/04/15 22:06:53 INFO MemoryStore: Block broadcast_13_piece0 stored as bytes in memory (estimated size 3.0 MiB, free 1045.6 MiB)
+26/04/15 22:06:53 INFO BlockManagerInfo: Added broadcast_13_piece0 in memory on ***-worker:39299 (size: 3.0 MiB, free: 1045.7 MiB)
+26/04/15 22:06:53 INFO SparkContext: Created broadcast 13 from $anonfun$withThreadLocalCaptured$1 at FutureTask.java:264
+26/04/15 22:06:53 INFO ShufflePartitionsUtil: For shuffle(0), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/04/15 22:06:54 INFO MemoryStore: Block broadcast_14 stored as values in memory (estimated size 32.0 KiB, free 1045.5 MiB)
+26/04/15 22:06:54 INFO MemoryStore: Block broadcast_14_piece0 stored as bytes in memory (estimated size 3.5 KiB, free 1045.5 MiB)
+26/04/15 22:06:54 INFO BlockManagerInfo: Added broadcast_14_piece0 in memory on ***-worker:39299 (size: 3.5 KiB, free: 1045.7 MiB)
+26/04/15 22:06:54 INFO SparkContext: Created broadcast 14 from broadcast at SparkWrite.java:193
+26/04/15 22:06:54 INFO AppendDataExec: Start processing data source write support: IcebergBatchWrite(table=gold.post_counts_by_user, format=PARQUET). The input RDD has 1 partitions.
+26/04/15 22:06:54 INFO SparkContext: Starting job: create at NativeMethodAccessorImpl.java:0
+26/04/15 22:06:54 INFO DAGScheduler: Got job 5 (create at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/04/15 22:06:54 INFO DAGScheduler: Final stage: ResultStage 7 (create at NativeMethodAccessorImpl.java:0)
+26/04/15 22:06:54 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 6)
+26/04/15 22:06:54 INFO DAGScheduler: Missing parents: List()
+26/04/15 22:06:54 INFO DAGScheduler: Submitting ResultStage 7 (MapPartitionsRDD[25] at create at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/04/15 22:06:54 INFO MemoryStore: Block broadcast_15 stored as values in memory (estimated size 59.9 KiB, free 1045.5 MiB)
+26/04/15 22:06:54 INFO MemoryStore: Block broadcast_15_piece0 stored as bytes in memory (estimated size 25.1 KiB, free 1045.4 MiB)
+26/04/15 22:06:54 INFO BlockManagerInfo: Added broadcast_15_piece0 in memory on ***-worker:39299 (size: 25.1 KiB, free: 1045.7 MiB)
+26/04/15 22:06:54 INFO SparkContext: Created broadcast 15 from broadcast at DAGScheduler.scala:1585
+26/04/15 22:06:54 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 7 (MapPartitionsRDD[25] at create at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/04/15 22:06:54 INFO TaskSchedulerImpl: Adding task set 7.0 with 1 tasks resource profile 0
+26/04/15 22:06:54 INFO TaskSetManager: Starting task 0.0 in stage 7.0 (TID 6) (172.18.0.9, executor 0, partition 0, NODE_LOCAL, 9602 bytes) 
+26/04/15 22:06:54 INFO BlockManagerInfo: Added broadcast_15_piece0 in memory on 172.18.0.9:37483 (size: 25.1 KiB, free: 1048.8 MiB)
+26/04/15 22:06:54 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.18.0.9:41016
+26/04/15 22:06:54 INFO BlockManagerInfo: Added broadcast_13_piece0 in memory on 172.18.0.9:37483 (size: 3.0 MiB, free: 1045.7 MiB)
+26/04/15 22:06:54 INFO BlockManagerInfo: Added broadcast_14_piece0 in memory on 172.18.0.9:37483 (size: 3.5 KiB, free: 1045.7 MiB)
+26/04/15 22:06:55 INFO TaskSetManager: Finished task 0.0 in stage 7.0 (TID 6) in 1854 ms on 172.18.0.9 (executor 0) (1/1)
+26/04/15 22:06:55 INFO TaskSchedulerImpl: Removed TaskSet 7.0, whose tasks have all completed, from pool 
+26/04/15 22:06:55 INFO DAGScheduler: ResultStage 7 (create at NativeMethodAccessorImpl.java:0) finished in 1.865 s
+26/04/15 22:06:55 INFO DAGScheduler: Job 5 is finished. Cancelling potential speculative or zombie tasks for this job
+26/04/15 22:06:55 INFO TaskSchedulerImpl: Killing all running tasks in stage 7: Stage finished
+26/04/15 22:06:55 INFO DAGScheduler: Job 5 finished: create at NativeMethodAccessorImpl.java:0, took 1.876213 s
+26/04/15 22:06:55 INFO AppendDataExec: Data source write support IcebergBatchWrite(table=gold.post_counts_by_user, format=PARQUET) is committing.
+26/04/15 22:06:55 INFO SparkWrite: Committing append with 1 new data files to table gold.post_counts_by_user
+26/04/15 22:06:56 INFO SnapshotProducer: Committed snapshot 7753658840138810856 (MergeAppend)
+26/04/15 22:06:56 INFO LoggingMetricsReporter: Received metrics report: CommitReport{tableName=gold.post_counts_by_user, snapshotId=7753658840138810856, sequenceNumber=1, operation=append, commitMetrics=CommitMetricsResult{totalDuration=TimerResult{timeUnit=NANOSECONDS, totalDuration=PT0.194399505S, count=1}, attempts=CounterResult{unit=COUNT, value=1}, addedDataFiles=CounterResult{unit=COUNT, value=1}, removedDataFiles=null, totalDataFiles=CounterResult{unit=COUNT, value=1}, addedDeleteFiles=null, addedEqualityDeleteFiles=null, addedPositionalDeleteFiles=null, removedDeleteFiles=null, removedEqualityDeleteFiles=null, removedPositionalDeleteFiles=null, totalDeleteFiles=CounterResult{unit=COUNT, value=0}, addedRecords=CounterResult{unit=COUNT, value=66723}, removedRecords=null, totalRecords=CounterResult{unit=COUNT, value=66723}, addedFilesSizeInBytes=CounterResult{unit=BYTES, value=446939}, removedFilesSizeInBytes=null, totalFilesSizeInBytes=CounterResult{unit=BYTES, value=446939}, addedPositionalDeletes=null, removedPositionalDeletes=null, totalPositionalDeletes=CounterResult{unit=COUNT, value=0}, addedEqualityDeletes=null, removedEqualityDeletes=null, totalEqualityDeletes=CounterResult{unit=COUNT, value=0}}, metadata={engine-version=3.5.5, app-id=app-20260415220635-0002, engine-name=spark, iceberg-version=Apache Iceberg 1.5.0 (commit 2519ab43d654927802cc02e19c917ce90e8e0265)}}
+26/04/15 22:06:56 INFO SparkWrite: Committed in 200 ms
+26/04/15 22:06:56 INFO AppendDataExec: Data source write support IcebergBatchWrite(table=gold.post_counts_by_user, format=PARQUET) committed.
+26/04/15 22:06:56 INFO NessieIcebergClient: Committed 'gold.post_counts_by_user' against 'Branch{name=main, metadata=null, hash=d61fc3379b2c8853daa08462d1dd8b55deff27901c5b66219101404552c9ba56}', expected commit-id was 'bab959fba38517a6c366c16798ae4f3f622579bd71a761b3500a65d6d5bd43bc'
+26/04/15 22:06:56 INFO BaseMetastoreTableOperations: Successfully committed to table gold.post_counts_by_user in 36 ms
+26/04/15 22:06:56 INFO BaseMetastoreTableOperations: Refreshing table metadata from new version: s3a://warehouse/gold/post_counts_by_user_2cded1ad-f9ac-46c1-928b-6d734bda51ad/metadata/00000-ebd93ba7-f388-4d85-8ab4-de8ecd393047.metadata.json
+26/04/15 22:06:56 INFO NessieUtil: loadTableMetadata for 'gold.post_counts_by_user' from location 's3a://warehouse/gold/post_counts_by_user_2cded1ad-f9ac-46c1-928b-6d734bda51ad/metadata/00000-ebd93ba7-f388-4d85-8ab4-de8ecd393047.metadata.json' at 'Branch{name=main, metadata=null, hash=d61fc3379b2c8853daa08462d1dd8b55deff27901c5b66219101404552c9ba56}'
+26/04/15 22:06:56 INFO BaseMetastoreCatalog: Table loaded by catalog: nessie.gold.post_counts_by_user
+26/04/15 22:06:56 INFO SnapshotScan: Scanning table nessie.gold.post_counts_by_user snapshot 7753658840138810856 created at 2026-04-15T22:06:56.152+00:00 with filter true
+26/04/15 22:06:56 INFO LoggingMetricsReporter: Received metrics report: ScanReport{tableName=nessie.gold.post_counts_by_user, snapshotId=7753658840138810856, filter=true, schemaId=0, projectedFieldIds=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], projectedFieldNames=[OwnerUserId, total_posts, total_preguntas, total_respuestas, total_score, score_promedio, total_views, total_comments, total_answers_received, DisplayName, Reputation, Location, Views, UpVotes, DownVotes, fecha_cargue], scanMetrics=ScanMetricsResult{totalPlanningDuration=TimerResult{timeUnit=NANOSECONDS, totalDuration=PT0.035360825S, count=1}, resultDataFiles=CounterResult{unit=COUNT, value=1}, resultDeleteFiles=CounterResult{unit=COUNT, value=0}, totalDataManifests=CounterResult{unit=COUNT, value=1}, totalDeleteManifests=CounterResult{unit=COUNT, value=0}, scannedDataManifests=CounterResult{unit=COUNT, value=1}, skippedDataManifests=CounterResult{unit=COUNT, value=0}, totalFileSizeInBytes=CounterResult{unit=BYTES, value=446939}, totalDeleteFileSizeInBytes=CounterResult{unit=BYTES, value=0}, skippedDataFiles=CounterResult{unit=COUNT, value=0}, skippedDeleteFiles=CounterResult{unit=COUNT, value=0}, scannedDeleteManifests=CounterResult{unit=COUNT, value=0}, skippedDeleteManifests=CounterResult{unit=COUNT, value=0}, indexedDeleteFiles=CounterResult{unit=COUNT, value=0}, equalityDeleteFiles=CounterResult{unit=COUNT, value=0}, positionalDeleteFiles=CounterResult{unit=COUNT, value=0}}, metadata={engine-version=3.5.5, iceberg-version=Apache Iceberg 1.5.0 (commit 2519ab43d654927802cc02e19c917ce90e8e0265), app-id=app-20260415220635-0002, engine-name=spark}}
+26/04/15 22:06:56 INFO V2ScanRelationPushDown: 
+Pushing operators to nessie.gold.post_counts_by_user
+Pushed Aggregate Functions:
+ COUNT(*)
+Pushed Group by:
+ 
+         
+26/04/15 22:06:56 INFO DAGScheduler: Registering RDD 30 (count at NativeMethodAccessorImpl.java:0) as input to shuffle 2
+26/04/15 22:06:56 INFO DAGScheduler: Got map stage job 6 (count at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/04/15 22:06:56 INFO DAGScheduler: Final stage: ShuffleMapStage 8 (count at NativeMethodAccessorImpl.java:0)
+26/04/15 22:06:56 INFO DAGScheduler: Parents of final stage: List()
+26/04/15 22:06:56 INFO DAGScheduler: Missing parents: List()
+26/04/15 22:06:56 INFO DAGScheduler: Submitting ShuffleMapStage 8 (MapPartitionsRDD[30] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_16 stored as values in memory (estimated size 21.0 KiB, free 1045.4 MiB)
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_16_piece0 stored as bytes in memory (estimated size 10.0 KiB, free 1045.4 MiB)
+26/04/15 22:06:56 INFO BlockManagerInfo: Added broadcast_16_piece0 in memory on ***-worker:39299 (size: 10.0 KiB, free: 1045.7 MiB)
+26/04/15 22:06:56 INFO SparkContext: Created broadcast 16 from broadcast at DAGScheduler.scala:1585
+26/04/15 22:06:56 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 8 (MapPartitionsRDD[30] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/04/15 22:06:56 INFO TaskSchedulerImpl: Adding task set 8.0 with 1 tasks resource profile 0
+26/04/15 22:06:56 INFO TaskSetManager: Starting task 0.0 in stage 8.0 (TID 7) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 9763 bytes) 
+26/04/15 22:06:56 INFO BlockManagerInfo: Added broadcast_16_piece0 in memory on 172.18.0.9:37483 (size: 10.0 KiB, free: 1045.7 MiB)
+26/04/15 22:06:56 INFO TaskSetManager: Finished task 0.0 in stage 8.0 (TID 7) in 92 ms on 172.18.0.9 (executor 0) (1/1)
+26/04/15 22:06:56 INFO TaskSchedulerImpl: Removed TaskSet 8.0, whose tasks have all completed, from pool 
+26/04/15 22:06:56 INFO DAGScheduler: ShuffleMapStage 8 (count at NativeMethodAccessorImpl.java:0) finished in 0.104 s
+26/04/15 22:06:56 INFO DAGScheduler: looking for newly runnable stages
+26/04/15 22:06:56 INFO DAGScheduler: running: Set()
+26/04/15 22:06:56 INFO DAGScheduler: waiting: Set()
+26/04/15 22:06:56 INFO DAGScheduler: failed: Set()
+26/04/15 22:06:56 INFO SparkContext: Starting job: count at NativeMethodAccessorImpl.java:0
+26/04/15 22:06:56 INFO DAGScheduler: Got job 7 (count at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/04/15 22:06:56 INFO DAGScheduler: Final stage: ResultStage 10 (count at NativeMethodAccessorImpl.java:0)
+26/04/15 22:06:56 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 9)
+26/04/15 22:06:56 INFO DAGScheduler: Missing parents: List()
+26/04/15 22:06:56 INFO DAGScheduler: Submitting ResultStage 10 (MapPartitionsRDD[33] at count at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_17 stored as values in memory (estimated size 25.3 KiB, free 1045.4 MiB)
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_17_piece0 stored as bytes in memory (estimated size 11.9 KiB, free 1045.4 MiB)
+26/04/15 22:06:56 INFO BlockManagerInfo: Added broadcast_17_piece0 in memory on ***-worker:39299 (size: 11.9 KiB, free: 1045.7 MiB)
+26/04/15 22:06:56 INFO SparkContext: Created broadcast 17 from broadcast at DAGScheduler.scala:1585
+26/04/15 22:06:56 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 10 (MapPartitionsRDD[33] at count at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/04/15 22:06:56 INFO TaskSchedulerImpl: Adding task set 10.0 with 1 tasks resource profile 0
+26/04/15 22:06:56 INFO TaskSetManager: Starting task 0.0 in stage 10.0 (TID 8) (172.18.0.9, executor 0, partition 0, NODE_LOCAL, 9602 bytes) 
+26/04/15 22:06:56 INFO BlockManagerInfo: Added broadcast_17_piece0 in memory on 172.18.0.9:37483 (size: 11.9 KiB, free: 1045.7 MiB)
+26/04/15 22:06:56 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 2 to 172.18.0.9:41016
+26/04/15 22:06:56 INFO TaskSetManager: Finished task 0.0 in stage 10.0 (TID 8) in 72 ms on 172.18.0.9 (executor 0) (1/1)
+26/04/15 22:06:56 INFO TaskSchedulerImpl: Removed TaskSet 10.0, whose tasks have all completed, from pool 
+26/04/15 22:06:56 INFO DAGScheduler: ResultStage 10 (count at NativeMethodAccessorImpl.java:0) finished in 0.084 s
+26/04/15 22:06:56 INFO DAGScheduler: Job 7 is finished. Cancelling potential speculative or zombie tasks for this job
+26/04/15 22:06:56 INFO TaskSchedulerImpl: Killing all running tasks in stage 10: Stage finished
+26/04/15 22:06:56 INFO DAGScheduler: Job 7 finished: count at NativeMethodAccessorImpl.java:0, took 0.090824 s
+26/04/15 22:06:56 INFO V2ScanRelationPushDown: 
+Output: OwnerUserId#412L, total_posts#413L, total_preguntas#414L, total_respuestas#415L, total_score#416L, score_promedio#417, total_views#418L, total_comments#419L, total_answers_received#420L, DisplayName#421, Reputation#422, Location#423, Views#424L, UpVotes#425L, DownVotes#426L, fecha_cargue#427
+         
+26/04/15 22:06:56 INFO SnapshotScan: Scanning table nessie.gold.post_counts_by_user snapshot 7753658840138810856 created at 2026-04-15T22:06:56.152+00:00 with filter true
+26/04/15 22:06:56 INFO BaseDistributedDataScan: Planning file tasks locally for table nessie.gold.post_counts_by_user
+26/04/15 22:06:56 INFO SparkPartitioningAwareScan: Reporting UnknownPartitioning with 1 partition(s) for table nessie.gold.post_counts_by_user
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_18 stored as values in memory (estimated size 32.0 KiB, free 1045.3 MiB)
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_18_piece0 stored as bytes in memory (estimated size 3.8 KiB, free 1045.3 MiB)
+26/04/15 22:06:56 INFO BlockManagerInfo: Added broadcast_18_piece0 in memory on ***-worker:39299 (size: 3.8 KiB, free: 1045.7 MiB)
+26/04/15 22:06:56 INFO SparkContext: Created broadcast 18 from broadcast at SparkBatch.java:79
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_19 stored as values in memory (estimated size 32.0 KiB, free 1045.3 MiB)
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_19_piece0 stored as bytes in memory (estimated size 3.8 KiB, free 1045.3 MiB)
+26/04/15 22:06:56 INFO BlockManagerInfo: Added broadcast_19_piece0 in memory on ***-worker:39299 (size: 3.8 KiB, free: 1045.7 MiB)
+26/04/15 22:06:56 INFO SparkContext: Created broadcast 19 from broadcast at SparkBatch.java:79
+26/04/15 22:06:56 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+26/04/15 22:06:56 INFO DAGScheduler: Got job 8 (showString at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/04/15 22:06:56 INFO DAGScheduler: Final stage: ResultStage 11 (showString at NativeMethodAccessorImpl.java:0)
+26/04/15 22:06:56 INFO DAGScheduler: Parents of final stage: List()
+26/04/15 22:06:56 INFO DAGScheduler: Missing parents: List()
+26/04/15 22:06:56 INFO DAGScheduler: Submitting ResultStage 11 (MapPartitionsRDD[38] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_20 stored as values in memory (estimated size 24.4 KiB, free 1045.3 MiB)
+26/04/15 22:06:56 INFO MemoryStore: Block broadcast_20_piece0 stored as bytes in memory (estimated size 9.9 KiB, free 1045.3 MiB)
+26/04/15 22:06:56 INFO BlockManagerInfo: Added broadcast_20_piece0 in memory on ***-worker:39299 (size: 9.9 KiB, free: 1045.7 MiB)
+26/04/15 22:06:56 INFO SparkContext: Created broadcast 20 from broadcast at DAGScheduler.scala:1585
+26/04/15 22:06:56 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 11 (MapPartitionsRDD[38] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/04/15 22:06:56 INFO TaskSchedulerImpl: Adding task set 11.0 with 1 tasks resource profile 0
+26/04/15 22:06:56 INFO TaskSetManager: Starting task 0.0 in stage 11.0 (TID 9) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 15522 bytes) 
+26/04/15 22:06:56 INFO BlockManagerInfo: Added broadcast_20_piece0 in memory on 172.18.0.9:37483 (size: 9.9 KiB, free: 1045.7 MiB)
+26/04/15 22:06:56 INFO BlockManagerInfo: Added broadcast_19_piece0 in memory on 172.18.0.9:37483 (size: 3.8 KiB, free: 1045.7 MiB)
+26/04/15 22:06:56 INFO TaskSetManager: Finished task 0.0 in stage 11.0 (TID 9) in 163 ms on 172.18.0.9 (executor 0) (1/1)
+26/04/15 22:06:56 INFO TaskSchedulerImpl: Removed TaskSet 11.0, whose tasks have all completed, from pool 
+26/04/15 22:06:56 INFO DAGScheduler: ResultStage 11 (showString at NativeMethodAccessorImpl.java:0) finished in 0.176 s
+26/04/15 22:06:56 INFO DAGScheduler: Job 8 is finished. Cancelling potential speculative or zombie tasks for this job
+26/04/15 22:06:56 INFO TaskSchedulerImpl: Killing all running tasks in stage 11: Stage finished
+26/04/15 22:06:56 INFO DAGScheduler: Job 8 finished: showString at NativeMethodAccessorImpl.java:0, took 0.180107 s
+26/04/15 22:06:56 INFO SparkContext: SparkContext is stopping with exitCode 0.
+26/04/15 22:06:57 INFO SparkUI: Stopped Spark web UI at http://***-worker:4040
+26/04/15 22:06:57 INFO StandaloneSchedulerBackend: Shutting down all executors
+26/04/15 22:06:57 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Asking each executor to shut down
+26/04/15 22:06:57 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+26/04/15 22:06:57 INFO MemoryStore: MemoryStore cleared
+26/04/15 22:06:57 INFO BlockManager: BlockManager stopped
+26/04/15 22:06:57 INFO BlockManagerMaster: BlockManagerMaster stopped
+26/04/15 22:06:57 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+26/04/15 22:06:57 INFO SparkContext: Successfully stopped SparkContext
+26/04/15 22:06:57 INFO ShutdownHookManager: Shutdown hook called
+26/04/15 22:06:57 INFO ShutdownHookManager: Deleting directory /tmp/spark-a436376f-d84f-44fb-9f8e-9ca74d77e8d5
+26/04/15 22:06:57 INFO ShutdownHookManager: Deleting directory /tmp/spark-a436376f-d84f-44fb-9f8e-9ca74d77e8d5/pyspark-26a7d6c8-d86e-4e34-a22c-fc05d01ab33c
+26/04/15 22:06:57 INFO ShutdownHookManager: Deleting directory /tmp/spark-b754d785-1061-4ce2-809a-57acb9d943f0
+[2026-04-15T22:06:57.671+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-04-15T22:06:57.682+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-04-15T22:06:57.683+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=stackoverflow_lakehouse_pipeline, task_id=gold_aggregation_post_counts, run_id=manual__2026-04-15T22:00:36.288038+00:00, execution_date=20260415T220036, start_date=20260415T220629, end_date=20260415T220657
+[2026-04-15T22:06:57.714+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-04-15T22:06:57.732+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-04-15T22:06:57.735+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
