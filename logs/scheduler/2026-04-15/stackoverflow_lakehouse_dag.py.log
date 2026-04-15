@@ -7439,3 +7439,31 @@ sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate
 [2026-04-15T22:36:58.576+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:36:58.576+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-04-15T22:36:58.591+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:36:58.591+0000] {dag.py:4180} INFO - Setting next_dagrun for stackoverflow_lakehouse_pipeline to None, run_after=None
 [2026-04-15T22:36:58.614+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/stackoverflow_lakehouse_dag.py took 0.094 seconds
+[2026-04-15T22:37:28.749+0000] {processor.py:186} INFO - Started process (PID=995) to work on /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:37:28.751+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/stackoverflow_lakehouse_dag.py for tasks to queue
+[2026-04-15T22:37:28.753+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:37:28.753+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:37:28.777+0000] {processor.py:925} INFO - DAG(s) 'stackoverflow_lakehouse_pipeline' retrieved from /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:37:28.804+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:37:28.803+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-04-15T22:37:28.821+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:37:28.820+0000] {dag.py:4180} INFO - Setting next_dagrun for stackoverflow_lakehouse_pipeline to None, run_after=None
+[2026-04-15T22:37:28.843+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/stackoverflow_lakehouse_dag.py took 0.100 seconds
+[2026-04-15T22:37:59.048+0000] {processor.py:186} INFO - Started process (PID=1002) to work on /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:37:59.049+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/stackoverflow_lakehouse_dag.py for tasks to queue
+[2026-04-15T22:37:59.052+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:37:59.052+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:37:59.084+0000] {processor.py:925} INFO - DAG(s) 'stackoverflow_lakehouse_pipeline' retrieved from /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:37:59.115+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:37:59.115+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-04-15T22:37:59.130+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:37:59.129+0000] {dag.py:4180} INFO - Setting next_dagrun for stackoverflow_lakehouse_pipeline to None, run_after=None
+[2026-04-15T22:37:59.154+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/stackoverflow_lakehouse_dag.py took 0.112 seconds
+[2026-04-15T22:38:29.298+0000] {processor.py:186} INFO - Started process (PID=1009) to work on /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:38:29.299+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/stackoverflow_lakehouse_dag.py for tasks to queue
+[2026-04-15T22:38:29.301+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:38:29.301+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:38:29.322+0000] {processor.py:925} INFO - DAG(s) 'stackoverflow_lakehouse_pipeline' retrieved from /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:38:29.347+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:38:29.347+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-04-15T22:38:29.360+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:38:29.360+0000] {dag.py:4180} INFO - Setting next_dagrun for stackoverflow_lakehouse_pipeline to None, run_after=None
+[2026-04-15T22:38:29.379+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/stackoverflow_lakehouse_dag.py took 0.087 seconds
+[2026-04-15T22:38:59.581+0000] {processor.py:186} INFO - Started process (PID=1016) to work on /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:38:59.582+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/stackoverflow_lakehouse_dag.py for tasks to queue
+[2026-04-15T22:38:59.584+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:38:59.584+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:38:59.606+0000] {processor.py:925} INFO - DAG(s) 'stackoverflow_lakehouse_pipeline' retrieved from /opt/airflow/dags/stackoverflow_lakehouse_dag.py
+[2026-04-15T22:38:59.632+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:38:59.632+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-04-15T22:38:59.649+0000] {logging_mixin.py:190} INFO - [2026-04-15T22:38:59.649+0000] {dag.py:4180} INFO - Setting next_dagrun for stackoverflow_lakehouse_pipeline to None, run_after=None
+[2026-04-15T22:38:59.670+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/stackoverflow_lakehouse_dag.py took 0.095 seconds

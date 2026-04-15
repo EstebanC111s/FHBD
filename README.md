@@ -20,7 +20,7 @@ Arquitectura Lakehouse desplegada con Docker Compose que implementa el patrón M
 
 ## Diagrama de arquitectura
 
-![Arquitectura Lakehouse](arquitectura_lakehouse.svg)
+![Arquitectura Lakehouse](arquitectura_lakehouse.jpeg)
 
 ## Servicios
 
