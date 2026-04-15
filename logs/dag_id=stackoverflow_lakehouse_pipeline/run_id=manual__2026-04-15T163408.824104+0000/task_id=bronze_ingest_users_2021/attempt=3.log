@@ -1,0 +1,194 @@
+[2026-04-15T16:41:16.877+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-04-15T16:41:16.896+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T16:34:08.824104+00:00 [queued]>
+[2026-04-15T16:41:16.907+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T16:34:08.824104+00:00 [queued]>
+[2026-04-15T16:41:16.912+0000] {taskinstance.py:2866} INFO - Starting attempt 3 of 3
+[2026-04-15T16:41:16.927+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): bronze_ingest_users_2021> on 2026-04-15 16:34:08.824104+00:00
+[2026-04-15T16:41:16.935+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1247) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-04-15T16:41:16.937+0000] {standard_task_runner.py:72} INFO - Started process 1248 to run task
+[2026-04-15T16:41:16.938+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'stackoverflow_lakehouse_pipeline', 'bronze_ingest_users_2021', 'manual__2026-04-15T16:34:08.824104+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/stackoverflow_lakehouse_dag.py', '--cfg-path', '/tmp/tmpkp8zf1xt']
+[2026-04-15T16:41:16.940+0000] {standard_task_runner.py:105} INFO - Job 11: Subtask bronze_ingest_users_2021
+[2026-04-15T16:41:17.002+0000] {task_command.py:467} INFO - Running <TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T16:34:08.824104+00:00 [running]> on host 3159b0321506
+[2026-04-15T16:41:17.092+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stackoverflow_lakehouse_pipeline' AIRFLOW_CTX_TASK_ID='bronze_ingest_users_2021' AIRFLOW_CTX_EXECUTION_DATE='2026-04-15T16:34:08.824104+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-15T16:34:08.824104+00:00'
+[2026-04-15T16:41:17.094+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-04-15T16:41:17.111+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2026-04-15T16:41:17.112+0000] {logging_mixin.py:190} INFO -   TAREA 1: BRONZE — Ingesta users_2021
+[2026-04-15T16:41:17.113+0000] {logging_mixin.py:190} INFO - ============================================================
+[2026-04-15T16:41:17.114+0000] {logging_mixin.py:190} INFO - Ejecutando: spark-submit --master spark://spark-master:7077 ... bronze_ingest_users.py
+[2026-04-15T16:41:23.178+0000] {logging_mixin.py:190} INFO - 
+============================================================
+  BRONZE INGEST — users_2021 (Spark)
+============================================================
+
+[1/3] Leyendo users.parquet desde https://datasets-documentation.s3.eu-west-3.amazonaws.com/stackoverflow/parquet/users.parquet ...
+  ERROR al leer: None
+Traceback (most recent call last):
+  File "/opt/***/scripts/bronze_ingest_users.py", line 66, in <module>
+    main()
+  File "/opt/***/scripts/bronze_ingest_users.py", line 39, in main
+    df = spark.read.parquet(USERS_URL)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.12/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/readwriter.py", line 544, in parquet
+  File "/home/***/.local/lib/python3.12/site-packages/pyspark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+  File "/home/***/.local/lib/python3.12/site-packages/pyspark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 185, in deco
+pyspark.errors.exceptions.captured.UnsupportedOperationException: None
+[2026-04-15T16:41:23.179+0000] {logging_mixin.py:190} INFO - STDERR: /home/***/.local/lib/python3.12/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+26/04/15 16:41:18 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/04/15 16:41:20 INFO SparkContext: Running Spark version 3.5.5
+26/04/15 16:41:20 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/04/15 16:41:20 INFO SparkContext: Java version 17.0.18
+26/04/15 16:41:20 INFO ResourceUtils: ==============================================================
+26/04/15 16:41:20 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/04/15 16:41:20 INFO ResourceUtils: ==============================================================
+26/04/15 16:41:20 INFO SparkContext: Submitted application: bronze_ingest_users
+26/04/15 16:41:20 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memoryOverhead -> name: memoryOverhead, amount: 512, script: , vendor: , cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 2048, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/04/15 16:41:20 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+26/04/15 16:41:20 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/04/15 16:41:20 INFO SecurityManager: Changing view acls to: ***
+26/04/15 16:41:20 INFO SecurityManager: Changing modify acls to: ***
+26/04/15 16:41:20 INFO SecurityManager: Changing view acls groups to: 
+26/04/15 16:41:20 INFO SecurityManager: Changing modify acls groups to: 
+26/04/15 16:41:20 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: ***; groups with view permissions: EMPTY; users with modify permissions: ***; groups with modify permissions: EMPTY
+26/04/15 16:41:20 INFO Utils: Successfully started service 'sparkDriver' on port 36609.
+26/04/15 16:41:20 INFO SparkEnv: Registering MapOutputTracker
+26/04/15 16:41:20 INFO SparkEnv: Registering BlockManagerMaster
+26/04/15 16:41:20 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/04/15 16:41:20 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/04/15 16:41:20 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/04/15 16:41:20 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-7c6ec485-fec3-4768-950a-2a030b102286
+26/04/15 16:41:20 INFO MemoryStore: MemoryStore started with capacity 1048.8 MiB
+26/04/15 16:41:20 INFO SparkEnv: Registering OutputCommitCoordinator
+26/04/15 16:41:20 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/04/15 16:41:20 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/04/15 16:41:20 INFO SparkContext: Added JAR file:///opt/spark-jars/hadoop-aws-3.3.4.jar at spark://***-worker:36609/jars/hadoop-aws-3.3.4.jar with timestamp 1776271280309
+26/04/15 16:41:20 INFO SparkContext: Added JAR file:///opt/spark-jars/aws-java-sdk-bundle-1.12.262.jar at spark://***-worker:36609/jars/aws-java-sdk-bundle-1.12.262.jar with timestamp 1776271280309
+26/04/15 16:41:20 INFO SparkContext: Added JAR file:///opt/spark-jars/bundle-2.24.8.jar at spark://***-worker:36609/jars/bundle-2.24.8.jar with timestamp 1776271280309
+26/04/15 16:41:20 INFO SparkContext: Added JAR file:///opt/spark-jars/url-connection-client-2.24.8.jar at spark://***-worker:36609/jars/url-connection-client-2.24.8.jar with timestamp 1776271280309
+26/04/15 16:41:20 INFO SparkContext: Added JAR file:///opt/spark-jars/iceberg-spark-runtime-3.5_2.12-1.5.0.jar at spark://***-worker:36609/jars/iceberg-spark-runtime-3.5_2.12-1.5.0.jar with timestamp 1776271280309
+26/04/15 16:41:20 INFO SparkContext: Added JAR file:///opt/spark-jars/nessie-spark-extensions-3.5_2.12-0.77.1.jar at spark://***-worker:36609/jars/nessie-spark-extensions-3.5_2.12-0.77.1.jar with timestamp 1776271280309
+26/04/15 16:41:20 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+26/04/15 16:41:21 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.7:7077 after 23 ms (0 ms spent in bootstraps)
+26/04/15 16:41:21 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20260415164121-0002
+26/04/15 16:41:21 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260415164121-0002/0 on worker-20260415155814-172.18.0.9-41617 (172.18.0.9:41617) with 1 core(s)
+26/04/15 16:41:21 INFO StandaloneSchedulerBackend: Granted executor ID app-20260415164121-0002/0 on hostPort 172.18.0.9:41617 with 1 core(s), 2.0 GiB RAM
+26/04/15 16:41:21 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41239.
+26/04/15 16:41:21 INFO NettyBlockTransferService: Server created on ***-worker 0.0.0.0:41239
+26/04/15 16:41:21 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/04/15 16:41:21 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, ***-worker, 41239, None)
+26/04/15 16:41:21 INFO BlockManagerMasterEndpoint: Registering block manager ***-worker:41239 with 1048.8 MiB RAM, BlockManagerId(driver, ***-worker, 41239, None)
+26/04/15 16:41:21 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, ***-worker, 41239, None)
+26/04/15 16:41:21 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, ***-worker, 41239, None)
+26/04/15 16:41:21 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20260415164121-0002/0 is now RUNNING
+26/04/15 16:41:21 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+26/04/15 16:41:21 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+26/04/15 16:41:21 INFO SharedState: Warehouse path is 'file:/opt/***/spark-warehouse'.
+26/04/15 16:41:22 INFO SparkContext: Invoking stop() from shutdown hook
+26/04/15 16:41:22 INFO SparkContext: SparkContext is stopping with exitCode 0.
+26/04/15 16:41:22 INFO SparkUI: Stopped Spark web UI at http://***-worker:4040
+26/04/15 16:41:23 INFO StandaloneSchedulerBackend: Shutting down all executors
+26/04/15 16:41:23 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Asking each executor to shut down
+26/04/15 16:41:23 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+26/04/15 16:41:23 INFO MemoryStore: MemoryStore cleared
+26/04/15 16:41:23 INFO BlockManager: BlockManager stopped
+26/04/15 16:41:23 INFO BlockManagerMaster: BlockManagerMaster stopped
+26/04/15 16:41:23 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+26/04/15 16:41:23 INFO SparkContext: Successfully stopped SparkContext
+26/04/15 16:41:23 INFO ShutdownHookManager: Shutdown hook called
+26/04/15 16:41:23 INFO ShutdownHookManager: Deleting directory /tmp/spark-0c56305f-f681-4c02-b8b7-c23117188e48
+26/04/15 16:41:23 INFO ShutdownHookManager: Deleting directory /tmp/spark-af827628-6c38-4a71-abdb-d2bb16b77750/pyspark-c1d23bc7-f9d8-4512-8e9c-c82ffc9f747b
+26/04/15 16:41:23 INFO ShutdownHookManager: Deleting directory /tmp/spark-af827628-6c38-4a71-abdb-d2bb16b77750
+[2026-04-15T16:41:23.181+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/stackoverflow_lakehouse_dag.py", line 131, in bronze_task
+    _spark_submit("bronze_ingest_users.py")
+  File "/opt/airflow/dags/stackoverflow_lakehouse_dag.py", line 123, in _spark_submit
+    raise RuntimeError(f"spark-submit falló con código {result.returncode}")
+RuntimeError: spark-submit falló con código 1
+[2026-04-15T16:41:23.204+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=stackoverflow_lakehouse_pipeline, task_id=bronze_ingest_users_2021, run_id=manual__2026-04-15T16:34:08.824104+00:00, execution_date=20260415T163408, start_date=20260415T164116, end_date=20260415T164123
+[2026-04-15T16:41:23.225+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-04-15T16:41:23.227+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 11 for task bronze_ingest_users_2021 (spark-submit falló con código 1; 1248)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/stackoverflow_lakehouse_dag.py", line 131, in bronze_task
+    _spark_submit("bronze_ingest_users.py")
+  File "/opt/airflow/dags/stackoverflow_lakehouse_dag.py", line 123, in _spark_submit
+    raise RuntimeError(f"spark-submit falló con código {result.returncode}")
+RuntimeError: spark-submit falló con código 1
+[2026-04-15T16:41:23.245+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-04-15T16:41:23.274+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-04-15T16:41:23.279+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

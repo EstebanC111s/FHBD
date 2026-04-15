@@ -1,0 +1,709 @@
+[2026-04-15T16:55:30.923+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-04-15T16:55:30.961+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T16:50:38.492232+00:00 [queued]>
+[2026-04-15T16:55:30.982+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T16:50:38.492232+00:00 [queued]>
+[2026-04-15T16:55:30.983+0000] {taskinstance.py:2866} INFO - Starting attempt 2 of 3
+[2026-04-15T16:55:31.006+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): bronze_ingest_users_2021> on 2026-04-15 16:50:38.492232+00:00
+[2026-04-15T16:55:31.015+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=582) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-04-15T16:55:31.018+0000] {standard_task_runner.py:72} INFO - Started process 583 to run task
+[2026-04-15T16:55:31.018+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'stackoverflow_lakehouse_pipeline', 'bronze_ingest_users_2021', 'manual__2026-04-15T16:50:38.492232+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/stackoverflow_lakehouse_dag.py', '--cfg-path', '/tmp/tmp37dxhrub']
+[2026-04-15T16:55:31.020+0000] {standard_task_runner.py:105} INFO - Job 20: Subtask bronze_ingest_users_2021
+[2026-04-15T16:55:31.118+0000] {task_command.py:467} INFO - Running <TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T16:50:38.492232+00:00 [running]> on host dd2335e7ac80
+[2026-04-15T16:55:31.288+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stackoverflow_lakehouse_pipeline' AIRFLOW_CTX_TASK_ID='bronze_ingest_users_2021' AIRFLOW_CTX_EXECUTION_DATE='2026-04-15T16:50:38.492232+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-15T16:50:38.492232+00:00'
+[2026-04-15T16:55:31.290+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-04-15T16:55:31.329+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2026-04-15T16:55:31.330+0000] {logging_mixin.py:190} INFO -   TAREA 1: BRONZE — Ingesta users_2021
+[2026-04-15T16:55:31.331+0000] {logging_mixin.py:190} INFO - ============================================================
+[2026-04-15T16:55:31.332+0000] {logging_mixin.py:190} INFO - Ejecutando: spark-submit --master spark://spark-master:7077 ... bronze_ingest_users.py
+[2026-04-15T16:55:50.358+0000] {job.py:229} INFO - Heartbeat recovered after 12.98 seconds
+[2026-04-15T16:59:09.635+0000] {logging_mixin.py:190} INFO - 
+============================================================
+  BRONZE INGEST — users_2021 (Spark con descarga local)
+============================================================
+
+[1/3] Descargando archivo local ...
+  Descargando https://datasets-documentation.s3.eu-west-3.amazonaws.com/stackoverflow/parquet/users.parquet a /tmp/tmpdw13dhrv.parquet...
+    8 MB...
+    16 MB...
+    24 MB...
+    32 MB...
+    40 MB...
+    48 MB...
+    56 MB...
+    64 MB...
+    72 MB...
+    80 MB...
+    88 MB...
+    96 MB...
+    104 MB...
+    112 MB...
+    120 MB...
+    128 MB...
+    136 MB...
+    144 MB...
+    152 MB...
+    160 MB...
+    168 MB...
+    176 MB...
+    184 MB...
+    192 MB...
+    200 MB...
+    208 MB...
+    216 MB...
+    224 MB...
+    232 MB...
+    240 MB...
+    248 MB...
+    256 MB...
+    264 MB...
+    272 MB...
+    280 MB...
+    288 MB...
+    296 MB...
+    304 MB...
+    312 MB...
+    320 MB...
+    328 MB...
+    336 MB...
+    344 MB...
+    352 MB...
+    360 MB...
+    368 MB...
+    376 MB...
+    384 MB...
+    392 MB...
+    400 MB...
+    408 MB...
+    416 MB...
+    424 MB...
+    432 MB...
+    440 MB...
+    448 MB...
+    456 MB...
+    464 MB...
+    472 MB...
+    480 MB...
+    488 MB...
+    496 MB...
+    504 MB...
+    512 MB...
+    520 MB...
+    528 MB...
+    536 MB...
+    544 MB...
+    552 MB...
+    560 MB...
+    568 MB...
+    576 MB...
+    584 MB...
+    592 MB...
+    600 MB...
+    608 MB...
+    616 MB...
+    624 MB...
+    632 MB...
+    640 MB...
+    648 MB...
+    656 MB...
+    664 MB...
+    672 MB...
+    680 MB...
+    688 MB...
+    696 MB...
+    704 MB...
+    712 MB...
+    720 MB...
+    728 MB...
+    736 MB...
+    744 MB...
+    752 MB...
+    760 MB...
+    768 MB...
+    776 MB...
+    784 MB...
+    792 MB...
+    800 MB...
+    808 MB...
+    816 MB...
+    824 MB...
+    832 MB...
+    840 MB...
+    848 MB...
+    856 MB...
+    864 MB...
+    872 MB...
+    880 MB...
+    888 MB...
+    896 MB...
+    904 MB...
+    912 MB...
+    920 MB...
+    928 MB...
+    936 MB...
+    944 MB...
+    952 MB...
+    960 MB...
+    968 MB...
+    976 MB...
+    984 MB...
+    992 MB...
+    1000 MB...
+    1008 MB...
+    1016 MB...
+    1024 MB...
+    1032 MB...
+    1040 MB...
+    1048 MB...
+    1056 MB...
+    1064 MB...
+    1072 MB...
+    1080 MB...
+    1088 MB...
+    1096 MB...
+    1104 MB...
+    1112 MB...
+    1120 MB...
+    1128 MB...
+    1136 MB...
+    1144 MB...
+    1152 MB...
+    1160 MB...
+    1168 MB...
+    1176 MB...
+    1184 MB...
+    1192 MB...
+    1200 MB...
+    1208 MB...
+    1216 MB...
+    1224 MB...
+    1232 MB...
+    1240 MB...
+    1248 MB...
+    1256 MB...
+    1264 MB...
+    1272 MB...
+    1280 MB...
+    1288 MB...
+    1296 MB...
+    1301 MB...
+  Descarga completa (1.27 GB)
+
+[2/3] Leyendo con Spark desde /tmp/tmpdw13dhrv.parquet ...
+  Limpiado archivo temporal
+Traceback (most recent call last):
+  File "/opt/***/scripts/bronze_ingest_users.py", line 93, in <module>
+    main()
+  File "/opt/***/scripts/bronze_ingest_users.py", line 62, in main
+    df = spark.read.parquet(tmp_path)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.12/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/readwriter.py", line 544, in parquet
+  File "/home/***/.local/lib/python3.12/site-packages/pyspark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+  File "/home/***/.local/lib/python3.12/site-packages/pyspark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+  File "/home/***/.local/lib/python3.12/site-packages/pyspark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 326, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o61.parquet.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 0.0 failed 4 times, most recent failure: Lost task 0.3 in stage 0.0 (TID 3) (172.18.0.9 executor 0): org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.util.ThreadUtils$.parmap(ThreadUtils.scala:387)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.readParquetFootersInParallel(ParquetFileFormat.scala:443)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1(ParquetFileFormat.scala:493)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1$adapted(ParquetFileFormat.scala:485)
+	at org.apache.spark.sql.execution.datasources.SchemaMergeUtils$.$anonfun$mergeSchemasInParallel$2(SchemaMergeUtils.scala:80)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:858)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:858)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: File file:/tmp/tmpdw13dhrv.parquet does not exist
+	at org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:462)
+	at org.apache.hadoop.fs.ChecksumFileSystem$ChecksumFSInputChecker.<init>(ChecksumFileSystem.java:160)
+	at org.apache.hadoop.fs.ChecksumFileSystem.open(ChecksumFileSystem.java:372)
+	at org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)
+	at org.apache.parquet.hadoop.util.HadoopInputFile.newStream(HadoopInputFile.java:69)
+	at org.apache.parquet.hadoop.ParquetFileReader.<init>(ParquetFileReader.java:796)
+	at org.apache.parquet.hadoop.ParquetFileReader.open(ParquetFileReader.java:666)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:85)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:76)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$readParquetFootersInParallel$1(ParquetFileFormat.scala:450)
+	at org.apache.spark.util.ThreadUtils$.$anonfun$parmap$2(ThreadUtils.scala:384)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:659)
+	at scala.util.Success.$anonfun$map$1(Try.scala:255)
+	at scala.util.Success.map(Try.scala:213)
+	at scala.concurrent.Future.$anonfun$map$1(Future.scala:292)
+	at scala.concurrent.impl.Promise.liftedTree1$1(Promise.scala:33)
+	at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2856)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2792)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2791)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2791)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1247)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3060)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2994)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2983)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:989)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2393)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2414)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2433)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2458)
+	at org.apache.spark.rdd.RDD.$anonfun$collect$1(RDD.scala:1049)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:410)
+	at org.apache.spark.rdd.RDD.collect(RDD.scala:1048)
+	at org.apache.spark.sql.execution.datasources.SchemaMergeUtils$.mergeSchemasInParallel(SchemaMergeUtils.scala:74)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.mergeSchemasInParallel(ParquetFileFormat.scala:497)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$.inferSchema(ParquetUtils.scala:132)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat.inferSchema(ParquetFileFormat.scala:79)
+	at org.apache.spark.sql.execution.datasources.DataSource.$anonfun$getOrInferFileFormatSchema$11(DataSource.scala:208)
+	at scala.Option.orElse(Option.scala:447)
+	at org.apache.spark.sql.execution.datasources.DataSource.getOrInferFileFormatSchema(DataSource.scala:205)
+	at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:407)
+	at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:229)
+	at org.apache.spark.sql.DataFrameReader.$anonfun$load$2(DataFrameReader.scala:211)
+	at scala.Option.getOrElse(Option.scala:189)
+	at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)
+	at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:563)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.util.ThreadUtils$.parmap(ThreadUtils.scala:387)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.readParquetFootersInParallel(ParquetFileFormat.scala:443)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1(ParquetFileFormat.scala:493)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1$adapted(ParquetFileFormat.scala:485)
+	at org.apache.spark.sql.execution.datasources.SchemaMergeUtils$.$anonfun$mergeSchemasInParallel$2(SchemaMergeUtils.scala:80)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:858)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:858)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: File file:/tmp/tmpdw13dhrv.parquet does not exist
+	at org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:462)
+	at org.apache.hadoop.fs.ChecksumFileSystem$ChecksumFSInputChecker.<init>(ChecksumFileSystem.java:160)
+	at org.apache.hadoop.fs.ChecksumFileSystem.open(ChecksumFileSystem.java:372)
+	at org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)
+	at org.apache.parquet.hadoop.util.HadoopInputFile.newStream(HadoopInputFile.java:69)
+	at org.apache.parquet.hadoop.ParquetFileReader.<init>(ParquetFileReader.java:796)
+	at org.apache.parquet.hadoop.ParquetFileReader.open(ParquetFileReader.java:666)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:85)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:76)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$readParquetFootersInParallel$1(ParquetFileFormat.scala:450)
+	at org.apache.spark.util.ThreadUtils$.$anonfun$parmap$2(ThreadUtils.scala:384)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:659)
+	at scala.util.Success.$anonfun$map$1(Try.scala:255)
+	at scala.util.Success.map(Try.scala:213)
+	at scala.concurrent.Future.$anonfun$map$1(Future.scala:292)
+	at scala.concurrent.impl.Promise.liftedTree1$1(Promise.scala:33)
+	at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+[2026-04-15T16:59:09.657+0000] {logging_mixin.py:190} INFO - STDERR: /home/***/.local/lib/python3.12/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+26/04/15 16:55:38 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/04/15 16:55:51 INFO SparkContext: Running Spark version 3.5.5
+26/04/15 16:55:51 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/04/15 16:55:51 INFO SparkContext: Java version 17.0.18
+26/04/15 16:55:51 INFO ResourceUtils: ==============================================================
+26/04/15 16:55:51 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/04/15 16:55:51 INFO ResourceUtils: ==============================================================
+26/04/15 16:55:51 INFO SparkContext: Submitted application: bronze_ingest_users
+26/04/15 16:55:51 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memoryOverhead -> name: memoryOverhead, amount: 512, script: , vendor: , cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 2048, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/04/15 16:55:51 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+26/04/15 16:55:51 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/04/15 16:55:51 INFO SecurityManager: Changing view acls to: ***
+26/04/15 16:55:51 INFO SecurityManager: Changing modify acls to: ***
+26/04/15 16:55:51 INFO SecurityManager: Changing view acls groups to: 
+26/04/15 16:55:51 INFO SecurityManager: Changing modify acls groups to: 
+26/04/15 16:55:51 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: ***; groups with view permissions: EMPTY; users with modify permissions: ***; groups with modify permissions: EMPTY
+26/04/15 16:55:52 INFO Utils: Successfully started service 'sparkDriver' on port 33389.
+26/04/15 16:55:52 INFO SparkEnv: Registering MapOutputTracker
+26/04/15 16:55:53 INFO SparkEnv: Registering BlockManagerMaster
+26/04/15 16:55:53 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/04/15 16:55:53 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/04/15 16:55:53 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/04/15 16:55:53 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-c52d556a-550e-405f-ab33-00748012e926
+26/04/15 16:55:53 INFO MemoryStore: MemoryStore started with capacity 1048.8 MiB
+26/04/15 16:55:53 INFO SparkEnv: Registering OutputCommitCoordinator
+26/04/15 16:55:53 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/04/15 16:55:54 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+26/04/15 16:55:54 INFO Utils: Successfully started service 'SparkUI' on port 4041.
+26/04/15 16:55:54 INFO SparkContext: Added JAR file:///opt/spark-jars/hadoop-aws-3.3.4.jar at spark://***-worker:33389/jars/hadoop-aws-3.3.4.jar with timestamp 1776272150972
+26/04/15 16:55:54 INFO SparkContext: Added JAR file:///opt/spark-jars/aws-java-sdk-bundle-1.12.262.jar at spark://***-worker:33389/jars/aws-java-sdk-bundle-1.12.262.jar with timestamp 1776272150972
+26/04/15 16:55:54 INFO SparkContext: Added JAR file:///opt/spark-jars/bundle-2.24.8.jar at spark://***-worker:33389/jars/bundle-2.24.8.jar with timestamp 1776272150972
+26/04/15 16:55:54 INFO SparkContext: Added JAR file:///opt/spark-jars/url-connection-client-2.24.8.jar at spark://***-worker:33389/jars/url-connection-client-2.24.8.jar with timestamp 1776272150972
+26/04/15 16:55:54 INFO SparkContext: Added JAR file:///opt/spark-jars/iceberg-spark-runtime-3.5_2.12-1.5.0.jar at spark://***-worker:33389/jars/iceberg-spark-runtime-3.5_2.12-1.5.0.jar with timestamp 1776272150972
+26/04/15 16:55:54 INFO SparkContext: Added JAR file:///opt/spark-jars/nessie-spark-extensions-3.5_2.12-0.77.1.jar at spark://***-worker:33389/jars/nessie-spark-extensions-3.5_2.12-0.77.1.jar with timestamp 1776272150972
+26/04/15 16:55:54 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+26/04/15 16:55:55 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.8:7077 after 107 ms (0 ms spent in bootstraps)
+26/04/15 16:55:55 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20260415165555-0003
+26/04/15 16:55:55 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41481.
+26/04/15 16:55:55 INFO NettyBlockTransferService: Server created on ***-worker 0.0.0.0:41481
+26/04/15 16:55:55 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/04/15 16:55:55 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, ***-worker, 41481, None)
+26/04/15 16:55:55 INFO BlockManagerMasterEndpoint: Registering block manager ***-worker:41481 with 1048.8 MiB RAM, BlockManagerId(driver, ***-worker, 41481, None)
+26/04/15 16:55:55 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, ***-worker, 41481, None)
+26/04/15 16:55:55 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, ***-worker, 41481, None)
+26/04/15 16:55:56 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+26/04/15 16:58:40 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260415165555-0003/0 on worker-20260415164511-172.18.0.9-44191 (172.18.0.9:44191) with 1 core(s)
+26/04/15 16:58:40 INFO StandaloneSchedulerBackend: Granted executor ID app-20260415165555-0003/0 on hostPort 172.18.0.9:44191 with 1 core(s), 2.0 GiB RAM
+26/04/15 16:58:40 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20260415165555-0003/0 is now RUNNING
+26/04/15 16:58:47 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+26/04/15 16:58:47 INFO SharedState: Warehouse path is 'file:/opt/***/spark-warehouse'.
+26/04/15 16:58:50 INFO InMemoryFileIndex: It took 118 ms to list leaf files for 1 paths.
+26/04/15 16:58:51 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.9:33128) with ID 0,  ResourceProfileId 0
+26/04/15 16:58:51 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+26/04/15 16:58:51 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.9:34429 with 1048.8 MiB RAM, BlockManagerId(0, 172.18.0.9, 34429, None)
+26/04/15 16:58:51 INFO DAGScheduler: Got job 0 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+26/04/15 16:58:51 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0)
+26/04/15 16:58:51 INFO DAGScheduler: Parents of final stage: List()
+26/04/15 16:58:51 INFO DAGScheduler: Missing parents: List()
+26/04/15 16:58:51 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/04/15 16:58:51 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 108.3 KiB, free 1048.7 MiB)
+26/04/15 16:58:51 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 39.7 KiB, free 1048.7 MiB)
+26/04/15 16:58:51 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on ***-worker:41481 (size: 39.7 KiB, free: 1048.8 MiB)
+26/04/15 16:58:51 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1585
+26/04/15 16:58:51 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+26/04/15 16:58:51 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+26/04/15 16:59:06 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 9689 bytes) 
+26/04/15 16:59:07 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.18.0.9:34429 (size: 39.7 KiB, free: 1048.8 MiB)
+26/04/15 16:59:08 WARN TaskSetManager: Lost task 0.0 in stage 0.0 (TID 0) (172.18.0.9 executor 0): org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.util.ThreadUtils$.parmap(ThreadUtils.scala:387)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.readParquetFootersInParallel(ParquetFileFormat.scala:443)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1(ParquetFileFormat.scala:493)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1$adapted(ParquetFileFormat.scala:485)
+	at org.apache.spark.sql.execution.datasources.SchemaMergeUtils$.$anonfun$mergeSchemasInParallel$2(SchemaMergeUtils.scala:80)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:858)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:858)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: File file:/tmp/tmpdw13dhrv.parquet does not exist
+	at org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:462)
+	at org.apache.hadoop.fs.ChecksumFileSystem$ChecksumFSInputChecker.<init>(ChecksumFileSystem.java:160)
+	at org.apache.hadoop.fs.ChecksumFileSystem.open(ChecksumFileSystem.java:372)
+	at org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)
+	at org.apache.parquet.hadoop.util.HadoopInputFile.newStream(HadoopInputFile.java:69)
+	at org.apache.parquet.hadoop.ParquetFileReader.<init>(ParquetFileReader.java:796)
+	at org.apache.parquet.hadoop.ParquetFileReader.open(ParquetFileReader.java:666)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:85)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:76)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$readParquetFootersInParallel$1(ParquetFileFormat.scala:450)
+	at org.apache.spark.util.ThreadUtils$.$anonfun$parmap$2(ThreadUtils.scala:384)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:659)
+	at scala.util.Success.$anonfun$map$1(Try.scala:255)
+	at scala.util.Success.map(Try.scala:213)
+	at scala.concurrent.Future.$anonfun$map$1(Future.scala:292)
+	at scala.concurrent.impl.Promise.liftedTree1$1(Promise.scala:33)
+	at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+
+26/04/15 16:59:08 INFO TaskSetManager: Starting task 0.1 in stage 0.0 (TID 1) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 9689 bytes) 
+26/04/15 16:59:08 INFO TaskSetManager: Lost task 0.1 in stage 0.0 (TID 1) on 172.18.0.9, executor 0: org.apache.spark.SparkException (Exception thrown in awaitResult: ) [duplicate 1]
+26/04/15 16:59:08 INFO TaskSetManager: Starting task 0.2 in stage 0.0 (TID 2) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 9689 bytes) 
+26/04/15 16:59:08 INFO TaskSetManager: Lost task 0.2 in stage 0.0 (TID 2) on 172.18.0.9, executor 0: org.apache.spark.SparkException (Exception thrown in awaitResult: ) [duplicate 2]
+26/04/15 16:59:08 INFO TaskSetManager: Starting task 0.3 in stage 0.0 (TID 3) (172.18.0.9, executor 0, partition 0, PROCESS_LOCAL, 9689 bytes) 
+26/04/15 16:59:08 INFO TaskSetManager: Lost task 0.3 in stage 0.0 (TID 3) on 172.18.0.9, executor 0: org.apache.spark.SparkException (Exception thrown in awaitResult: ) [duplicate 3]
+26/04/15 16:59:08 ERROR TaskSetManager: Task 0 in stage 0.0 failed 4 times; aborting job
+26/04/15 16:59:08 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+26/04/15 16:59:08 INFO TaskSchedulerImpl: Cancelling stage 0
+26/04/15 16:59:08 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage cancelled: Job aborted due to stage failure: Task 0 in stage 0.0 failed 4 times, most recent failure: Lost task 0.3 in stage 0.0 (TID 3) (172.18.0.9 executor 0): org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.util.ThreadUtils$.parmap(ThreadUtils.scala:387)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.readParquetFootersInParallel(ParquetFileFormat.scala:443)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1(ParquetFileFormat.scala:493)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1$adapted(ParquetFileFormat.scala:485)
+	at org.apache.spark.sql.execution.datasources.SchemaMergeUtils$.$anonfun$mergeSchemasInParallel$2(SchemaMergeUtils.scala:80)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:858)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:858)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: File file:/tmp/tmpdw13dhrv.parquet does not exist
+	at org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:462)
+	at org.apache.hadoop.fs.ChecksumFileSystem$ChecksumFSInputChecker.<init>(ChecksumFileSystem.java:160)
+	at org.apache.hadoop.fs.ChecksumFileSystem.open(ChecksumFileSystem.java:372)
+	at org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)
+	at org.apache.parquet.hadoop.util.HadoopInputFile.newStream(HadoopInputFile.java:69)
+	at org.apache.parquet.hadoop.ParquetFileReader.<init>(ParquetFileReader.java:796)
+	at org.apache.parquet.hadoop.ParquetFileReader.open(ParquetFileReader.java:666)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:85)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:76)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$readParquetFootersInParallel$1(ParquetFileFormat.scala:450)
+	at org.apache.spark.util.ThreadUtils$.$anonfun$parmap$2(ThreadUtils.scala:384)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:659)
+	at scala.util.Success.$anonfun$map$1(Try.scala:255)
+	at scala.util.Success.map(Try.scala:213)
+	at scala.concurrent.Future.$anonfun$map$1(Future.scala:292)
+	at scala.concurrent.impl.Promise.liftedTree1$1(Promise.scala:33)
+	at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+
+Driver stacktrace:
+26/04/15 16:59:08 INFO DAGScheduler: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0) failed in 17.441 s due to Job aborted due to stage failure: Task 0 in stage 0.0 failed 4 times, most recent failure: Lost task 0.3 in stage 0.0 (TID 3) (172.18.0.9 executor 0): org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.util.ThreadUtils$.parmap(ThreadUtils.scala:387)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.readParquetFootersInParallel(ParquetFileFormat.scala:443)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1(ParquetFileFormat.scala:493)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$mergeSchemasInParallel$1$adapted(ParquetFileFormat.scala:485)
+	at org.apache.spark.sql.execution.datasources.SchemaMergeUtils$.$anonfun$mergeSchemasInParallel$2(SchemaMergeUtils.scala:80)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2(RDD.scala:858)
+	at org.apache.spark.rdd.RDD.$anonfun$mapPartitions$2$adapted(RDD.scala:858)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: File file:/tmp/tmpdw13dhrv.parquet does not exist
+	at org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:462)
+	at org.apache.hadoop.fs.ChecksumFileSystem$ChecksumFSInputChecker.<init>(ChecksumFileSystem.java:160)
+	at org.apache.hadoop.fs.ChecksumFileSystem.open(ChecksumFileSystem.java:372)
+	at org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)
+	at org.apache.parquet.hadoop.util.HadoopInputFile.newStream(HadoopInputFile.java:69)
+	at org.apache.parquet.hadoop.ParquetFileReader.<init>(ParquetFileReader.java:796)
+	at org.apache.parquet.hadoop.ParquetFileReader.open(ParquetFileReader.java:666)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:85)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFooterReader.readFooter(ParquetFooterReader.java:76)
+	at org.apache.spark.sql.execution.datasources.parquet.ParquetFileFormat$.$anonfun$readParquetFootersInParallel$1(ParquetFileFormat.scala:450)
+	at org.apache.spark.util.ThreadUtils$.$anonfun$parmap$2(ThreadUtils.scala:384)
+	at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:659)
+	at scala.util.Success.$anonfun$map$1(Try.scala:255)
+	at scala.util.Success.map(Try.scala:213)
+	at scala.concurrent.Future.$anonfun$map$1(Future.scala:292)
+	at scala.concurrent.impl.Promise.liftedTree1$1(Promise.scala:33)
+	at scala.concurrent.impl.Promise.$anonfun$transform$1(Promise.scala:33)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+
+Driver stacktrace:
+26/04/15 16:59:08 INFO DAGScheduler: Job 0 failed: parquet at NativeMethodAccessorImpl.java:0, took 17.585589 s
+26/04/15 16:59:09 INFO SparkContext: Invoking stop() from shutdown hook
+26/04/15 16:59:09 INFO SparkContext: SparkContext is stopping with exitCode 0.
+26/04/15 16:59:09 INFO SparkUI: Stopped Spark web UI at http://***-worker:4041
+26/04/15 16:59:09 INFO StandaloneSchedulerBackend: Shutting down all executors
+26/04/15 16:59:09 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Asking each executor to shut down
+26/04/15 16:59:09 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+26/04/15 16:59:09 INFO MemoryStore: MemoryStore cleared
+26/04/15 16:59:09 INFO BlockManager: BlockManager stopped
+26/04/15 16:59:09 INFO BlockManagerMaster: BlockManagerMaster stopped
+26/04/15 16:59:09 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+26/04/15 16:59:09 INFO SparkContext: Successfully stopped SparkContext
+26/04/15 16:59:09 INFO ShutdownHookManager: Shutdown hook called
+26/04/15 16:59:09 INFO ShutdownHookManager: Deleting directory /tmp/spark-6e4ee123-a133-44cc-809b-2c3b21f1a892
+26/04/15 16:59:09 INFO ShutdownHookManager: Deleting directory /tmp/spark-6e4ee123-a133-44cc-809b-2c3b21f1a892/pyspark-ee460748-ced5-49dc-ab4c-92c8aa03f1dc
+26/04/15 16:59:09 INFO ShutdownHookManager: Deleting directory /tmp/spark-34b2ba3b-fa27-47dd-98a7-9fc85c2d9911
+[2026-04-15T16:59:09.673+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/stackoverflow_lakehouse_dag.py", line 131, in bronze_task
+    _spark_submit("bronze_ingest_users.py")
+  File "/opt/airflow/dags/stackoverflow_lakehouse_dag.py", line 123, in _spark_submit
+    raise RuntimeError(f"spark-submit falló con código {result.returncode}")
+RuntimeError: spark-submit falló con código 1
+[2026-04-15T16:59:09.801+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=stackoverflow_lakehouse_pipeline, task_id=bronze_ingest_users_2021, run_id=manual__2026-04-15T16:50:38.492232+00:00, execution_date=20260415T165038, start_date=20260415T165530, end_date=20260415T165909
+[2026-04-15T16:59:09.874+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-04-15T16:59:09.878+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 20 for task bronze_ingest_users_2021 (spark-submit falló con código 1; 583)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/stackoverflow_lakehouse_dag.py", line 131, in bronze_task
+    _spark_submit("bronze_ingest_users.py")
+  File "/opt/airflow/dags/stackoverflow_lakehouse_dag.py", line 123, in _spark_submit
+    raise RuntimeError(f"spark-submit falló con código {result.returncode}")
+RuntimeError: spark-submit falló con código 1
+[2026-04-15T16:59:09.947+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-04-15T16:59:09.977+0000] {standard_task_runner.py:217} INFO - Process not found (most likely exited), stop collecting metrics
+[2026-04-15T16:59:10.012+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-04-15T16:59:10.017+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

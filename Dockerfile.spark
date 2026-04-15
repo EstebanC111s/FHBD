@@ -1,0 +1,45 @@
+FROM apache/spark:3.5.5
+
+USER root
+
+# 1. Python 3.9 + tools
+RUN apt-get update && \
+    apt-get install -y \
+        python3.9 \
+        python3.9-distutils \
+        python3.9-venv \
+        curl \
+        wget \
+    && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1 \
+    && update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1 \
+    && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
+    && python3 get-pip.py \
+    && rm get-pip.py \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV PYSPARK_PYTHON=python3
+ENV PYSPARK_DRIVER_PYTHON=python3
+
+# 2. JARs (baked at build time)
+WORKDIR /opt/spark/jars
+
+# Iceberg + Nessie
+RUN wget -q https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-spark-runtime-3.5_2.12/1.5.0/iceberg-spark-runtime-3.5_2.12-1.5.0.jar && \
+    wget -q https://repo1.maven.org/maven2/org/projectnessie/nessie-integrations/nessie-spark-extensions-3.5_2.12/0.77.1/nessie-spark-extensions-3.5_2.12-0.77.1.jar
+
+# Hadoop AWS + AWS SDK
+RUN wget -q https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar && \
+    wget -q https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar && \
+    wget -q https://repo1.maven.org/maven2/software/amazon/awssdk/bundle/2.24.8/bundle-2.24.8.jar && \
+    wget -q https://repo1.maven.org/maven2/software/amazon/awssdk/url-connection-client/2.24.8/url-connection-client-2.24.8.jar
+
+# 3. Spark defaults
+COPY spark-defaults.conf /opt/spark/conf/spark-defaults.conf
+
+# 4. Python deps for workers
+RUN pip install --no-cache-dir pandas boto3 pyspark==3.5.5 pyarrow
+
+RUN chown -R spark:spark /opt/spark/jars /opt/spark/conf
+USER spark
+WORKDIR /opt/spark/work-dir

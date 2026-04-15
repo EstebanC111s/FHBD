@@ -1,0 +1,28 @@
+[2026-04-15T17:09:09.069+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-04-15T17:09:09.084+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T16:51:43.173151+00:00 [queued]>
+[2026-04-15T17:09:09.091+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T16:51:43.173151+00:00 [queued]>
+[2026-04-15T17:09:09.091+0000] {taskinstance.py:2866} INFO - Starting attempt 5 of 7
+[2026-04-15T17:09:09.102+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): bronze_ingest_users_2021> on 2026-04-15 16:51:43.173151+00:00
+[2026-04-15T17:09:09.106+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1303) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-04-15T17:09:09.108+0000] {standard_task_runner.py:72} INFO - Started process 1304 to run task
+[2026-04-15T17:09:09.108+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'stackoverflow_lakehouse_pipeline', 'bronze_ingest_users_2021', 'manual__2026-04-15T16:51:43.173151+00:00', '--job-id', '26', '--raw', '--subdir', 'DAGS_FOLDER/stackoverflow_lakehouse_dag.py', '--cfg-path', '/tmp/tmp1dyms3m4']
+[2026-04-15T17:09:09.109+0000] {standard_task_runner.py:105} INFO - Job 26: Subtask bronze_ingest_users_2021
+[2026-04-15T17:09:09.151+0000] {task_command.py:467} INFO - Running <TaskInstance: stackoverflow_lakehouse_pipeline.bronze_ingest_users_2021 manual__2026-04-15T16:51:43.173151+00:00 [running]> on host dd2335e7ac80
+[2026-04-15T17:09:09.210+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stackoverflow_lakehouse_pipeline' AIRFLOW_CTX_TASK_ID='bronze_ingest_users_2021' AIRFLOW_CTX_EXECUTION_DATE='2026-04-15T16:51:43.173151+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-15T16:51:43.173151+00:00'
+[2026-04-15T17:09:09.210+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-04-15T17:09:09.225+0000] {logging_mixin.py:190} INFO - 
+============================================================
+[2026-04-15T17:09:09.226+0000] {logging_mixin.py:190} INFO -   TAREA 1: BRONZE — Ingesta users_2021
+[2026-04-15T17:09:09.227+0000] {logging_mixin.py:190} INFO - ============================================================
+[2026-04-15T17:09:09.227+0000] {logging_mixin.py:190} INFO - Ejecutando: spark-submit --master spark://spark-master:7077 ... bronze_ingest_users.py
+[2026-04-15T17:10:24.989+0000] {local_task_job_runner.py:346} WARNING - State of this instance has been externally set to failed. Terminating instance.
+[2026-04-15T17:10:24.995+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2026-04-15T17:10:25.001+0000] {process_utils.py:132} INFO - Sending 15 to group 1304. PIDs of all processes in the group: [1306, 1370, 1304]
+[2026-04-15T17:10:25.002+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 1304
+[2026-04-15T17:10:25.005+0000] {taskinstance.py:3093} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-04-15T17:10:25.096+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-04-15T17:10:25.177+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1370, status='terminated', started='17:09:10') (1370) terminated with exit code None
+[2026-04-15T17:10:25.179+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1306, status='terminated', started='17:09:08') (1306) terminated with exit code None
+[2026-04-15T17:10:25.180+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1304, status='terminated', exitcode=0, started='17:09:08') (1304) terminated with exit code 0
