@@ -1,5 +1,3 @@
-Hi
-
 # Proyecto 2 — Arquitectura Lakehouse con Pipeline Medallion
 
 ## Integrantes
